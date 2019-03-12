@@ -4,7 +4,7 @@
 [[ $- != *i* ]] && return
 
 # path to config directory
-CONFIG_DIR="$HOME/Dropbox/config" # TODO read from some file in home
+CONFIG_DIR="$HOME/.dotconfig"
 
 ## terminal options
 shopt -s autocd # cd by typing a path

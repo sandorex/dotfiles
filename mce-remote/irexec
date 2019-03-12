@@ -128,7 +128,7 @@ begin
 	prog=irexec
 	remote=mceusb
 	button=KEY_0
-	config=/home/.dotconfig/bin/suspend-monitor
+	config=/home/sandorex/.dotconfig/bin/suspend-monitor
 end
 
 # restore blanking/screensaver
