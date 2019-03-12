@@ -1,0 +1,8 @@
+ASUS M5A97 R2.0
+
+(conf file is legacy)
+
+add to argument to kernel cmdline in grub:
+   GRUB_CMDLINE_LINUX=".. acpi_enforce_resources=lax .."
+
+if that doesnt work run `sensors-detect --auto` (NOT RECOMMENDED)

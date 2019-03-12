@@ -1,3 +1,3 @@
 # dotconfig
 
-My .config and some other scripts
+My `.config` and some other scripts

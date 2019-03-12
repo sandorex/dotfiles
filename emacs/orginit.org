@@ -1,0 +1,336 @@
+#+TITLE: Emacs configuration
+#+AUTHOR: SandoreX
+#+STARTUP: overview
+
++This configuration depends on modalka.+
+This configuration will depend on modalka once i get myself to set it up.
+
+:setup:
+Run this code to set it up (for archlinux use code below)
+#+BEGIN_SRC emacs-lisp :tangle no
+(all-the-icons-install-fonts)
+#+END_SRC
+
+because of bugs with all-the-icons for archlinux install these packages from AUR
+#+BEGIN_SRC bash
+sudo pikaur -S                 \
+	  ttf-all-the-icons         \
+	  ttf-atom-file-icons       \
+	  ttf-font-awesome-4        \
+	  ttf-material-design-icons \
+	  ttf-octicons              \
+	  ttf-weather-icons
+#+END_SRC
+:end:
+
+* Initialization
+  Package initialization code
+  #+BEGIN_SRC emacs-lisp
+  ;;; -*- lexical-binding: t -*-
+
+  (require 'package)
+  (setq package-enable-at-startup nil)
+  (setq package-archives '(("melpa" . "https://melpa.org/packages/")
+									("gnu" . "https://elpa.gnu.org/packages/")))
+
+  (package-initialize)
+
+  (unless (package-installed-p 'use-package)
+	 (package-refresh-contents)
+	 (package-install 'use-package))
+
+  (setq use-package-always-ensure t)
+
+  (eval-when-compile
+	 (require 'use-package))
+  #+END_SRC
+* Customization
+	#+BEGIN_SRC emacs-lisp
+	;; use unicode
+	(set-language-environment "UTF-8")
+	(set-default-coding-systems 'utf-8)
+	(prefer-coding-system 'utf-8)
+
+	;; indentation settings
+	(setq-default tab-width 3)
+	(setq tab-width 3)
+
+	;; disable startup screen
+	(setq inhibit-startup-screen t)
+
+	;; follow symlinks
+	;;(setq find-file-visit-truename t)
+
+	;; burn the bell
+	(setq ring-bell-function 'ignore)
+
+	;; use y or n istead of yes or no
+	(fset 'yes-or-no-p 'y-or-n-p)
+
+	;; save history in minibuffer
+	(savehist-mode 1)
+
+	;; saves cursor position
+	(save-place-mode 1)
+
+	;; scroll settings
+	(setq redisplay-dont-pause 1
+			scroll-margin 3
+			scroll-step 1
+			scroll-conservatively 10000
+			mouse-wheel-scroll-amount '(2 ((shift) . 1))
+			mouse-wheel-progressive-speed nil
+			mouse-wheel-follow-mouse t)
+
+	;; backup settings TODO
+	(setq backup-by-copying t
+			backup-directory-alist `((".*" . ,temporary-file-directory))
+			auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
+
+	;; disable bars
+	(tool-bar-mode -1)
+	(menu-bar-mode -1)
+	(scroll-bar-mode -1)
+
+	;; use pretty symbols
+	(global-prettify-symbols-mode t)
+
+	;; highlight current line
+	(global-hl-line-mode)
+
+	;; show line, column in modeline
+	(setq column-number-mode t)
+
+	;; show line number (emacs > 26.1)
+	(when (version<= "26.1" emacs-version)
+	  (add-hook 'prog-mode-hook 'display-line-numbers-mode))
+
+	;; use org-mode for .org.* files
+	(setq auto-mode-alist
+			(append '(("\\.org\\.[A-Za-z0-9_]+" . org-mode))
+					  auto-mode-alist))
+
+	;; delete trailing whitespaces on save
+	(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+	;; autocomplete paren
+	(add-hook 'prog-mode-hook 'electric-pair-mode)
+
+	;; replace selection when typing
+	(add-hook 'after-init-hook 'delete-selection-mode)
+	#+END_SRC
+
+* Theming
+	#+BEGIN_SRC emacs-lisp
+	;; run 'all-the-icons-install-fonts' after install
+	(use-package all-the-icons)
+	(use-package atom-one-dark-theme
+	  :init (load-theme 'atom-one-dark))
+
+	(use-package doom-modeline
+	  :after all-the-icons
+	  :hook (after-init . doom-modeline-init)
+	  :config
+
+	  ;; hide github notifications
+	  (setq doom-modeline-github nil))
+
+	;; (use-package spaceline
+	;;   :ensure t
+	;;   :init
+	;;   (spaceline-emacs-theme)
+	;;   (spaceline-toggle-minor-modes-off)
+	;;   (spaceline-toggle-buffer-encoding-off))
+
+	(use-package dashboard
+	  :if (< (length command-line-args) 2)
+	  :config
+	  ;; set text and banner on the dashboard
+	  (setq dashboard-banner-logo-title "It's time for a crusade!")
+	  (setq dashboard-startup-banner "~/Dropbox/pictures/assets/emacs-startup.png")
+	  (dashboard-setup-startup-hook)
+	  (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*"))))
+
+	(use-package org-bullets
+	  :hook (org-mode . org-bullets-mode)
+	  :config
+	  ;; customize bullet list characters
+	  (setq org-bullets-bullet-list '("◉" "○" "⚫")))
+
+	;; set bg color to black on terminal
+	(unless (display-graphic-p)
+	  (add-to-list 'default-frame-alist '(background-color . "black")))
+	#+END_SRC
+* Keybindings
+  #+BEGIN_SRC emacs-lisp
+  (defun duplicate-line (&optional arg)
+	 "Duplicate current line"
+	 (interactive "p")
+	 (or arg (setq arg 1))
+	 (when (<= arg 0) (setq arg (- arg)))
+	 (let ((col (current-column)))
+		(when (eobp) (open-line 1))
+		(kill-whole-line)
+		(yank)
+		(dotimes (n arg) (yank))
+		(forward-line (- (+ arg 1)))
+		(move-to-column col)))
+
+  ;; duplicate line
+  (global-set-key (kbd "C-S-d") 'duplicate-line)
+
+  ;; delete whole line
+  (global-set-key (kbd "C-S-k") 'kill-whole-line)
+
+  ;; comment out the line
+  (global-set-key (kbd "C-c c") 'comment-line)
+
+  ;; open new frame
+  (global-set-key (kbd "C-c m") 'make-frame)
+  #+END_SRC
+* Packages
+** Modalka
+	#+BEGIN_SRC emacs-lisp
+	(use-package modalka
+	  :disabled
+	  :init
+	  (define-minor-mode custom-mode
+		 "Minor mode to enable modalka after disabled"
+		 ;; The initial value - Set to 1 to enable by default
+		 nil
+		 ;; The indicator for the mode line.
+		 " CustomMode"
+		 ;; The minor mode keymap
+		 `(
+			(,(kbd "<escape>") . modalka-mode)
+			)
+		 ;; Make mode global rather than buffer local
+		 :global 1
+		 )
+	  ;; (modalka-define-kbd "d" "C-S-d")
+	  ;; (modalka-define-kbd "k" "C-S-k")
+	  ;; (define-key  (kbd "<return>") (lambda (interactive) (modalka-mode 0)))
+	  (modal)
+	  ;; (define-key modalka-mode-map (kbd "<return>") #'modalka-mode)
+	  ;; (global-set-key (kbd "<escape>") #'modalka-mode)
+	  (modalka-global-mode 1))
+	#+END_SRC
+** Org
+	#+BEGIN_SRC emacs-lisp
+	(use-package org
+		  :pin manual
+		  :bind (
+					;; org-mode bindings
+
+					:map org-mode-map
+					("C-." . org-edit-special)
+
+					;; bindings inside src block
+					:map org-src-mode-map
+					("C-." . org-edit-src-exit))
+		  ;;:custom-face
+		  ;;(org-ellipsis ((t (:foreground "dim gray"))))
+		  ;;(rainbow-delimiters-unmatched-face ((t (:foreground "magenta" :weight bold))))
+		  :init
+		  ;; templates
+		  (add-to-list 'org-structure-template-alist
+							'("el" "#+BEGIN_SRC emacs-lisp\n?\n#+END_SRC"))
+		  (add-to-list 'org-structure-template-alist
+							'("f" "#+BEGIN_SRC fundamental\n?\n#+END_SRC"))
+
+		  ;; stop themes from increasing header size
+		  ;; (dolist (face '(org-level-1
+		  ;; 						org-level-2
+		  ;; 						org-level-3
+		  ;; 						org-level-4
+		  ;; 						org-level-5))
+		  ;; 	 (set-face-attribute face nil :weight 'semi-bold :height 1.0))
+
+
+		  ;; set default directory
+		  (setq org-directory "~/Dropbox/notes")
+
+		  ;; set default notes file
+		  (setq org-default-notes-file (concat org-directory "/notes.org.txt"))
+
+		  ;; word wrap in org-mode
+		  (setq org-startup-truncated nil)
+
+		  ;; do not preserve indent in src blocks
+		  (setq org-src-preserve-indentation nil)
+
+		  ;; use main window for editing src blocks
+		  (setq org-src-window-setup 'current-window)
+
+		  ;; do not indent src blocks
+		  (setq org-edit-src-content-indentation 0)
+
+		  ;; show pretty UTF8 characters
+		  (setq org-pretty-entities t)
+
+		  ;; hide emphasis markers
+		  (setq org-hide-emphasis-markers t)
+
+		  ;; make tab indent same as in language
+		  (setq org-src-tab-acts-natively t)
+
+		  ;; set ellipsis symbol
+		  (setq org-ellipsis " »")
+
+		  ;; enable shift select
+		  (setq org-support-shift-select t)
+
+		  ;; allow running shell in org
+		  (org-babel-do-load-languages 'org-babel-load-languages
+												 '((shell . t))))
+	#+END_SRC
+** Tools
+	#+BEGIN_SRC emacs-lisp
+	(use-package auto-package-update
+	  :config (auto-package-update-maybe))
+
+	;; todo agressive-indent-mode yasnippet
+	(use-package rainbow-delimiters
+	  :hook (prog-mode . rainbow-delimiters-mode))
+
+	(use-package multiple-cursors
+	  :bind ("C-S-l" . mc/edit-lines))
+
+	(use-package helm
+	  :bind (("C-x b" . helm-mini)
+				("M-x" . helm-M-x)
+				("C-x C-f" . helm-find-files))
+	  :init (helm-mode 1))
+
+	(use-package ace-window
+	  :bind ("M-o" . ace-window))
+
+	(use-package neotree
+	  :bind ("<f8>" . neotree-toggle)
+	  :config (setq neo-theme (if (display-graphic-p) (quote icons) (quote arrow))))
+
+	(use-package which-key
+	  :init (which-key-mode))
+
+	(use-package projectile)
+
+	;; (use-package undo-tree
+	;;   :init (global-undo-tree-mode))
+	#+END_SRC
+** Autocompletion
+	#+BEGIN_SRC emacs-lisp
+	(use-package auto-complete
+	  :config (ac-config-default))
+	#+END_SRC
+* Functions
+  #+BEGIN_SRC emacs-lisp
+  (defun reload ()
+	 "Reloads init.el"
+	 (interactive)
+	 (load-file (expand-file-name "init.el" user-emacs-directory)))
+
+  (defun edit-init ()
+	 "Opens orginit.org"
+	 (interactive)
+	 (find-file (expand-file-name "orginit.org" user-emacs-directory)))
+  #+END_SRC

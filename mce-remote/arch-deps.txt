@@ -1,0 +1,3 @@
+xautomation
+lirc
+pulseaudio-lirc

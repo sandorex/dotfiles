@@ -1,0 +1,5 @@
+# copy to /etc/sudoers.d/sudoers
+# DO NOT REPLACE THE /etc/sudoers WITH THIS FILE!
+
+Defaults env_reset
+Defaults pwfeedback

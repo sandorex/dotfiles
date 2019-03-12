@@ -1,0 +1,6 @@
+*r 20-radeon.conf /etc/X11/xorg.conf.d/20-radeon.conf
+*r environment /etc/environment
+*r sudoers /etc/sudoers.d/sudoers
+*r compton.conf ~/.config/compton.conf
+*r profile ~/.profile
+*r user-init.service ~/.config/systemd/user/user-init.service

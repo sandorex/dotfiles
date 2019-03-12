@@ -1,0 +1,4 @@
+cr 10-mce-keyboard-disable.conf /etc/X11/xorg.conf.d/10-mce-keyboard-disable.conf
+cr mceusb.lircd.conf /etc/lirc/lircd.conf.d/mceusb.lircd.conf
+* irexec ~/.config/lircrc
+* irexec-user.service ~/.config/systemd/user/irexec-user.service

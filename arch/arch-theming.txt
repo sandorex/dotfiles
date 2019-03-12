@@ -1,0 +1,10 @@
+icon: Pop # pop-icon-theme-bin or pop-icon-theme-git
+gtk: breeze-dark
+qt: breeze-dark
+fonts:
+   Noto Sans
+   Hack
+kde:
+   look and feel: breeze-dark
+   colors: Materia Dark # materia-gtk-theme materia-kde
+   plasma theme: Materia

@@ -1,0 +1,6 @@
+# ~/.profile
+export PATH="$PATH:/home/sandorex/.dotconfig/bin:/home/sandorex/.local/bin"
+
+if [[ -d "/home/sandorex/Dropbox/bin" ]]; then
+   export PATH="$PATH:/home/sandorex/Dropbox/bin"
+fi

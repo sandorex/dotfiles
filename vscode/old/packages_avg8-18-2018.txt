@@ -1,0 +1,28 @@
+bungcip.better-toml
+castwide.solargraph
+CoenraadS.bracket-pair-colorizer --
+cssho.vscode-svgviewer
+dollyn.line-counter
+HookyQR.beautify
+monokai.theme-monokai-pro-vscode
+ms-python.python
+ms-vscode.cpptools
+ms-vscode.csharp
+ms-vscode.mono-debug
+ms-vscode.PowerShell
+ms-vsliveshare.vsliveshare
+reblws.one-dark-flatland-monokai
+rebornix.ruby
+redhat.java
+ritwickdey.LiveServer --
+robinbentley.sass-indented
+rust-lang.rust
+sdras.night-owl
+shardulm94.trailing-spaces
+sidneys1.gitconfig
+twxs.cmake
+vscjava.vscode-java-debug
+vscjava.vscode-java-pack
+vscjava.vscode-java-test
+vscjava.vscode-maven
+WakaTime.vscode-wakatime

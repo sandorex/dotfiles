@@ -1,0 +1,11 @@
+imagus:
+   popup on ctrl
+   no delay
+   right click on picture centers it and makes it zoomable
+plasma-media-integration thingy
+feedbro
+dark gtk theme fix:
+   create string in about:config named "widget.content.gtk-theme-override" and enter "<THEME>:<VARIANT>" where variant is either dark or light (example "Adwaita:light")
+
+userChrome:
+   copy chrome folder to profile folder

@@ -1,0 +1,3 @@
+# this is remedy for disabled root passwd
+# run as user
+kwriteconfig5 --file kdesurc --group super-user-command --key super-user-command sudo

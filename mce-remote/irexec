@@ -1,0 +1,140 @@
+## MEDIA
+begin
+	prog=irexec
+	remote=mceusb
+	button=KEY_PLAY
+	config=/usr/bin/xte 'key XF86AudioPlay'
+end
+
+begin
+	prog=irexec
+	remote=mceusb
+	button=KEY_PAUSE
+	config=/usr/bin/xte 'key XF86AudioPause'
+end
+
+begin
+	prog=irexec
+	remote=mceusb
+	button=KEY_VOLUMEUP
+	config=/usr/bin/xte 'key XF86AudioRaiseVolume'
+end
+
+
+begin
+	prog=irexec
+	remote=mceusb
+	button=KEY_VOLUMEDOWN
+	config=/usr/bin/xte 'key XF86AudioLowerVolume'
+end
+
+begin
+	prog=irexec
+	remote=mceusb
+	button=KEY_MUTE
+	config=/usr/bin/xte 'key XF86AudioMute'
+end
+
+
+begin
+	prog=irexec
+	remote=mceusb
+	button=KEY_STOP
+	config=/usr/bin/xte 'key XF86AudioStop'
+end
+
+begin
+	prog=irexec
+	remote=mceusb
+	button=KEY_AGAIN
+	config=/usr/bin/xte 'key XF86AudioPrev'
+end
+
+begin
+	prog=irexec
+	remote=mceusb
+	button=KEY_NEXT
+	config=/usr/bin/xte 'key XF86AudioNext'
+end
+
+begin
+	prog=irexec
+	remote=mceusb
+	button=KEY_REWIND
+	config=/usr/bin/xte 'key XF86AudioRewind'
+end
+
+begin
+	prog=irexec
+	remote=mceusb
+	button=KEY_FORWARD
+	config=/usr/bin/xte 'key XF86AudioForward'
+end
+
+begin
+	prog=irexec
+	remote=mceusb
+	button=KEY_AUDIO # music key on remote
+	config=/usr/bin/xte 'key XF86AudioMedia'
+end
+
+## MOUSE
+#begin
+#	prog=irexec
+#	remote=mceusb
+#	button=KEY_UP
+#	config=/usr/bin/xte 'mousermove 0 -15'
+#end
+#
+#begin
+#	prog=irexec
+#	remote=mceusb
+#	button=KEY_DOWN
+#	config=/usr/bin/xte 'mousermove 0 15'
+#end
+#
+#begin
+#	prog=irexec
+#	remote=mceusb
+#	button=KEY_LEFT
+#	config=/usr/bin/xte 'mousermove -15 0'
+#end
+#
+#begin
+#	prog=irexec
+#	remote=mceusb
+#	button=KEY_RIGHT
+#	config=/usr/bin/xte 'mousermove 15 0'
+#end
+#
+#begin
+#	prog=irexec
+#	remote=mceusb
+#	button=KEY_OK
+#	config=/usr/bin/xte 'mouseclick 1'
+#end
+
+## MISC
+# disable blanking/screensaver
+begin
+	prog=irexec
+	remote=mceusb
+	button=KEY_NUMERIC_STAR
+	config=/usr/bin/xset s off -dpms
+end
+
+# suspend screen
+begin
+	prog=irexec
+	remote=mceusb
+	button=KEY_0
+	config=/home/.dotconfig/bin/suspend-monitor
+end
+
+# restore blanking/screensaver
+begin
+	prog=irexec
+	remote=mceusb
+	button=KEY_NUMERIC_POUND
+	config=/usr/bin/xset s on +dpms
+end
