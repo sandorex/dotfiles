@@ -1,5 +1,7 @@
 #!/bin/bash
 # requires pactl pamixer xinput xset kdialog
+# you must disable the screensaver before using this script
+
 
 # mouse to disable when suspending screen
 # use `xinput list` to get the name
@@ -88,9 +90,11 @@ if monitor state; then
 fi
 
 if ! mouse state; then
-	# display message that delays enabling the mouse
-	kdialog --msgbox "Press enter to re-enable the mouse" > /dev/null 2>&1
-	mouse on
+	# display message that delays enabling the mouse in the background
+   { \
+      kdialog --msgbox "Press enter to re-enable the mouse" > /dev/null 2>&1; \
+      mouse on; \
+   } &
 else
 	echo "Mouse wasn't disabled even though it should've been"
 	exit 1
