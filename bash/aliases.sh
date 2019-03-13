@@ -8,7 +8,7 @@ alias pikas='pikaur -Ss'
 alias pikai='pikaur -S'
 alias pikau='pikaur -Syyu'
 
-## other
+## utils
 alias e="micro"
 alias edit="micro"
 alias mkdir="mkdir --parents" # no error, make parent dir if needed
@@ -30,3 +30,9 @@ alias jctlf='sudo journalctl -p 3 -xb'
 alias mslp='sleep 1; xset dpms force off'
 alias grep='grep --color=auto'
 alias greppy='grep -C 3'
+
+# misc
+alias zt-start='sudo systemctl start zerotier-one'
+alias zt-stop='sudo systemctl stop zerotier-one'
+alias zt-info='sudo zerotier-cli info'
+alias zt-peers='sudo zerotier-cli listpeers'
