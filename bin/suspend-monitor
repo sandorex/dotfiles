@@ -1,14 +1,15 @@
 #!/bin/bash
 # requires pactl pamixer xinput xset kdialog
-# you must disable the screensaver before using this script
-
+#
+# kde-connect disable 'Inhibit Screensaver' in plugins on PC
+# dpms s off -dpms
 
 # mouse to disable when suspending screen
-# use `xinput list` to get the name
+# use `xinput list` to get the name or id
 MOUSE="pointer:USB Laser Game Mouse"
 
 # if audio is playing through this sink screen wont be suspended
-# use `pactl list short sinks` to get the name
+# use `pactl list short sinks` to get the name or id
 MONITOR_SINK="alsa_output.pci-0000_01_00.1.hdmi-stereo"
 
 function sink() {
@@ -48,7 +49,7 @@ function mouse() {
 function monitor() {
 	case $1 in
 		suspend|off)
-			xset dpms force off
+			sleep 0.2; xset dpms force off
 		;;
 		wake|on)
 			xset dpms force on
@@ -75,9 +76,6 @@ fi
 # turn off the mouse
 mouse off
 
-# delay required
-sleep 1
-
 # make sure dpms is on
 #xset +dpms
 
@@ -86,16 +84,25 @@ monitor off
 
 if monitor state; then
 	echo "Monitor did not turn off even though it should have"
+
+   # turn the mouse back on
+	mouse on
 	exit 1
 fi
 
 if ! mouse state; then
-	# display message that delays enabling the mouse in the background
-   { \
-      kdialog --msgbox "Press enter to re-enable the mouse" > /dev/null 2>&1; \
-      mouse on; \
+   # run in background
+   {
+   	# display message that delays enabling the mouse in the background
+      kdialog --msgbox "Press enter to re-enable the mouse" > /dev/null 2>&1
+   
+      # turn the mouse back on
+      mouse on
    } &
 else
 	echo "Mouse wasn't disabled even though it should've been"
+
+	# turn monitor back on
+	monitor on
 	exit 1
 fi
