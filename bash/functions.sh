@@ -1,12 +1,12 @@
 #!/bin/bash
 
 function sp {
-	echo "saveing path $1"
+	echo "-- saving path $1"
 	export ___path_save_${1}=`pwd`
 }
 
 function lp {
-	echo "loading path save $1"
+	echo "-- loading path $1"
 	cd $___path_save_${1}
 }
 
