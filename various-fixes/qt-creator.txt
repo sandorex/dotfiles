@@ -1,0 +1,8 @@
+ptrace: Operation not permitted.
+
+Could not attach to the process. Make sure no other debugger traces this process.
+Check the settings of
+/proc/sys/kernel/yama/ptrace_scope
+For more details, see /etc/sysctl.d/10-ptrace.conf
+
+create /etc/sysctl.d/10-ptrace.conf and write: `kernel.yama.ptrace_scope = 0`

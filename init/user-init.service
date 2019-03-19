@@ -1,0 +1,11 @@
+[Unit]
+Description=User Initialization
+ConditionPathExists=%h/.dotconfig/init/init.sh
+
+[Service]
+ExecStart=%h/.dotconfig/init/init.sh
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target

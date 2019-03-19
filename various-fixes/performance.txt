@@ -1,0 +1,5 @@
+BOOT:
+after running `systemd-analyze critical-chain` i saw `lvm2-monitor` slow it down by 7.5s
+so to disable it run `# systemctl mask lvm2-monitor`
+BUT BE SURE THAT YOU ARENT USING LVM
+
