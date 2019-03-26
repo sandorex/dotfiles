@@ -1,1 +1,1 @@
-this folder contains configurations that require either script or user interaction to install
+this folder contains configurations that have to be installed using script or manually
