@@ -1,0 +1,12 @@
+[Unit]
+Description=IRexec User Daemon
+After=user-init.service
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/irexec --daemon
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=default.target

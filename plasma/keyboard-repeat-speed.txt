@@ -1,1 +1,0 @@
-to set using a script you need to set Keyboard > Keyboard Repeat in settings to Leave Unchanged
