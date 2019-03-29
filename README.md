@@ -1,5 +1,6 @@
-To install everything run `make` as root, to install only user configs run as user
+# Modular [Dotfiles](https://gitlab.com/sandorex/config)
+**IM NOT RESPONSIBLE IF YOU TURN ON SKYNET**
 
-If you don't want to use `make`, you can use `stow */`, it will ignore `other` folder
+You can install things using `stow` or `make`, running `make` will tell you all configurations available
 
-**Everything but `other` folder is configuration that can be used with simply running `stow` on it**
+**Everything but `other` and `manual` directories contain configuration that can be used by simply running `stow` on it, others require using the makefile or manual installation**

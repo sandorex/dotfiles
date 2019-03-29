@@ -11,7 +11,7 @@ Run this code to set it up (for archlinux use code below)
 (all-the-icons-install-fonts)
 #+END_SRC
 
-because of bugs with all-the-icons for archlinux install these packages from AUR
+because of a bug with all-the-icons for archlinux install these packages from AUR
 #+BEGIN_SRC bash
 sudo pikaur -S                 \
 	  ttf-all-the-icons         \

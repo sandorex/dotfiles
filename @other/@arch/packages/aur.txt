@@ -1,0 +1,10 @@
+caffeine-ng
+dropbox
+micro-git
+pikaur
+pop-icon-theme-bin
+tagainijisho
+timeshift
+ttf-all-the-icons
+xournalpp-git
+plymouth
