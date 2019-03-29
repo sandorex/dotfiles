@@ -71,3 +71,6 @@ kcm-wacomtablet
 gst-plugins-good
 gst-plugins-ugly
 ntfs-3g
+vagrant
+docker
+nvim
