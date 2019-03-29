@@ -1,1 +1,4 @@
-use `systemctl enable --user ./user-init.service`
+use (must use absolute path here)
+```
+systemctl enable --user $PWD/user-init.service
+```
