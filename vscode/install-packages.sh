@@ -1,5 +1,4 @@
-code --install-extension azemoh.one-monokai
-code --install-extension bungcip.better-toml
+#!/bin/sh
 code --install-extension christian-kohler.path-intellisense
 code --install-extension CoenraadS.bracket-pair-colorizer
 code --install-extension Gruntfuggly.todo-tree
