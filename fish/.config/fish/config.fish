@@ -9,4 +9,4 @@ end
 set -g theme_display_ruby no
 set -g theme_display_virtualenv no
 
-source ./aliases.fish
+source $XDG_CONFIG_HOME/fish/aliases.fish
