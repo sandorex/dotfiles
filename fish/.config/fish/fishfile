@@ -2,3 +2,4 @@ fishpkg/fish-prompt-metro
 franciscolourenco/done
 fishpkg/fish-humanize-duration
 oh-my-fish/plugin-bang-bang
+oh-my-fish/plugin-foreign-env
