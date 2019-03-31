@@ -1,0 +1,17 @@
+# paths where configs are contained
+OTHER_PATH			:= ./other
+MANUAL_PATH			:= ./manual
+
+# minimal config with only scripts and shell cfg
+TERMINAL				:= bin init bash micro
+
+# full config with everything that i really use
+DEFAULT				:= $(TERMINAL) fish vscode emacs
+
+# full config but with graphics configuration
+DESKTOP				:= $(DEFAULT) mce-remote radeon compton
+
+terminal: $(TERMINAL)
+default: $(DEFAULT)
+desktop: $(DESKTOP)
+
