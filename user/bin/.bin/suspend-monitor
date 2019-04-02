@@ -12,7 +12,10 @@ MOUSE="pointer:USB Laser Game Mouse"
 # use `pactl list short sinks` to get the name or id
 MONITOR_SINK="alsa_output.pci-0000_01_00.1.hdmi-stereo"
 
-function sink() {
+# flag, non-empty if dpms was off before script started
+DPMS_STATE=
+
+function sink {
 	case $1 in
 		playing)
 			pactl list short sinks | grep "$MONITOR_SINK" | grep -q "RUNNING$"
@@ -20,20 +23,18 @@ function sink() {
 		muted)
 			pamixer --sink "$MONITOR_SINK" --get-mute  > /dev/null 2>&1
 		;;
-		on)
-			sink playing && ! sink muted
 	esac
 }
 
-function mouse() {
+function mouse {
 	case $1 in
-		disable|off)
+		off)
 			xinput disable "$MOUSE"
 		;;
-		enable|on)
+		on)
 			xinput enable "$MOUSE"
 		;;
-		state|status)
+		state)
 			xinput list-props "$MOUSE" | grep "Device Enabled" | grep -q "1$"
 		;;
 		toggle)
@@ -46,42 +47,60 @@ function mouse() {
 	esac
 }
 
-function monitor() {
+function monitor {
 	case $1 in
-		suspend|off)
+		off)
 			sleep 0.2; xset dpms force off
 		;;
-		wake|on)
+		on)
 			xset dpms force on
 		;;
-		state|status)
-			xset q | grep Monitor | grep -q "On$"
+		state)
+			xset q | tail -n1 | grep -Eq "Disabled|On$"
 		;;
 	esac
 }
 
+function dpms {
+   case $1 in
+      on)
+         xset +dpms
+      ;;
+      off)
+         xset -dpms
+      ;;
+      state)
+         ! xset q | tail -n1 | grep -Eq "Disabled"
+      ;;
+   esac
+}
+
 # check for xorg
 if ! test "$DISPLAY"; then
-	echo "Xorg display not found"
-	exit 1
+   echo "Xorg display not found"
+   exit 1
 fi
 
-# make sure dpms is on
-xset +dpms
+if ! dpms state; then
+   # make sure dpms is on
+   dpms on
+   
+   DPMS_STATE="1"
+fi
 
 # check if monitor is already off
 if ! monitor state; then
-   echo "Monitor already off"
+   echo "Monitor is already off"
    exit 1
 fi
 
 # check if audio is playing
-if sink on && [[ ! "$1" =~ force ]]; then
-	cat <<EOF
+if [[ -n "$MONITOR_SINK" ]] && sink playing && ! sink muted && [[ ! "$1" =~ force ]]; then
+   cat <<EOF
 Audio is playing through the monitor ($MONITOR_SINK) and it wont be suspended
 If you want to force suspend use '$0 force'
 EOF
-	exit 1
+   exit 1
 fi
 
 # turn off the mouse
@@ -91,26 +110,28 @@ mouse off
 monitor off
 
 if monitor state; then
-	echo "Monitor did not turn off even though it should have"
+   echo "Monitor did not turn off even though it should have"
 
    # turn the mouse back on
-	mouse on
-	exit 1
+   mouse on
+   exit 1
 fi
 
-if ! mouse state; then
-   # run in background
-   {
-   	# display message that delays enabling the mouse in the background
-      kdialog --msgbox "Press enter to re-enable the mouse" > /dev/null 2>&1
+if mouse state; then
+   echo "Mouse wasn't disabled even though it should've been"
    
-      # turn the mouse back on
-      mouse on
-   } &
-else
-	echo "Mouse wasn't disabled even though it should've been"
-
-	# turn monitor back on
-	monitor on
-	exit 1
+   # turn monitor back on
+   monitor on
+   exit 1
 fi
+
+# display message that delays enabling the mouse in the background
+kdialog --msgbox "Press enter to re-enable the mouse" > /dev/null 2>&1
+
+# revert dpms state
+if [ -n "$DPMS_STATE" ]; then
+   dpms off
+fi
+
+# turn the mouse back on
+mouse on
