@@ -8,10 +8,10 @@ INSTALL_FLAG_FILE 			?= .installed
 MAKE_FLAGS						?= --no-print-directory
 
 # flags passed to stow
-STOW_FLAGS						?= -v --ignore="\.mk$$" --ignore="\.md$$"
+STOW_FLAGS						?= -v --ignore="\.mk$$" --ignore="\.md$$" --ignore="$(INSTALL_FLAG_FILE)"
 
 # disables modification to filesystem with exception of flag file
-SIMULATION						:= true
+#SIMULATION						:= true
 
 ifdef SIMULATION
 # add simulate flag to stow

@@ -11,5 +11,5 @@ export PS1="\[$(tput bold)\]\[$(tput setaf 5)\]\w\\n\[$(tput setaf 3)\]\\$ \[$(t
 export TERM=xterm-256color
 
 ## load other files
-source ~/.bin/bash/functions.sh
-source ~/.bin/bash/aliases.sh
+source ~/.bash/functions.sh
+source ~/.bash/aliases.sh
