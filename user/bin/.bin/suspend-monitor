@@ -10,55 +10,59 @@ MOUSE="pointer:USB Laser Game Mouse"
 
 # if audio is playing through this sink screen wont be suspended
 # use `pactl list short sinks` to get the name or id
-MONITOR_SINK="alsa_output.pci-0000_01_00.1.hdmi-stereo"
+# this is not required
+# MONITOR_SINK="alsa_output.pci-0000_01_00.1.hdmi-stereo"
 
-# flag, non-empty if dpms was off before script started
-DPMS_STATE=
+function error {
+   echo -e "(${FUNCNAME[0]}) [error] $*"
+   exit 1
+}
 
 function sink {
-	case $1 in
-		playing)
-			pactl list short sinks | grep "$MONITOR_SINK" | grep -q "RUNNING$"
-		;;
-		muted)
-			pamixer --sink "$MONITOR_SINK" --get-mute  > /dev/null 2>&1
-		;;
-	esac
+   case $1 in
+      playing)
+         pactl list short sinks | grep "$MONITOR_SINK" | grep -q "RUNNING$"
+      ;;
+      muted)
+         pamixer --sink "$MONITOR_SINK" --get-mute  > /dev/null 2>&1
+      ;;
+   esac
 }
 
 function mouse {
-	case $1 in
-		off)
-			xinput disable "$MOUSE"
-		;;
-		on)
-			xinput enable "$MOUSE"
-		;;
-		state)
-			xinput list-props "$MOUSE" | grep "Device Enabled" | grep -q "1$"
-		;;
-		toggle)
-			if mouse state; then
-				mouse off
-			else
-				mouse on
-			fi
-		;;
-	esac
+   case $1 in
+      off)
+         xinput disable "$MOUSE"
+
+         mouse state && error "mouse couldn't be disabled"
+      ;;
+      on)
+         xinput enable "$MOUSE"
+
+         mouse state || error "mouse couldn't be disabled"
+      ;;
+      state)
+         xinput list-props "$MOUSE" | grep "Device Enabled" | grep -q "1$"
+      ;;
+   esac
 }
 
 function monitor {
-	case $1 in
-		off)
-			sleep 0.2; xset dpms force off
-		;;
-		on)
-			xset dpms force on
-		;;
-		state)
-			xset q | tail -n1 | grep -Eq "Disabled|On$"
-		;;
-	esac
+   case $1 in
+      off)
+         sleep 0.2; xset dpms force off
+
+         monitor state && error "monitor couldn't be suspended"
+      ;;
+      on)
+         xset dpms force on
+
+         monitor state || error "monitor didn't wake up"
+      ;;
+      state)
+         xset q | tail -n1 | grep -Eq "Disabled|On$"
+      ;;
+   esac
 }
 
 function dpms {
@@ -76,15 +80,15 @@ function dpms {
 }
 
 # check for xorg
-if ! test "$DISPLAY"; then
-   echo "Xorg display not found"
+if ! xhost >& /dev/null; then
+   error "xorg not found"
    exit 1
 fi
 
 if ! dpms state; then
    # make sure dpms is on
    dpms on
-   
+
    DPMS_STATE="1"
 fi
 
@@ -109,29 +113,19 @@ mouse off
 # turn monitor off
 monitor off
 
-if monitor state; then
-   echo "Monitor did not turn off even though it should have"
+# watch monitor state
+# turn mouse on when monitor wakes up
+{
+   while ! monitor state; do
+      # may seem like a lot but waking is actually really long
+      sleep 3s
+   done
+
+   # revert dpms state
+   if [ -n "$DPMS_STATE" ]; then
+      dpms off
+   fi
 
    # turn the mouse back on
    mouse on
-   exit 1
-fi
-
-if mouse state; then
-   echo "Mouse wasn't disabled even though it should've been"
-   
-   # turn monitor back on
-   monitor on
-   exit 1
-fi
-
-# display message that delays enabling the mouse in the background
-kdialog --msgbox "Press enter to re-enable the mouse" > /dev/null 2>&1
-
-# revert dpms state
-if [ -n "$DPMS_STATE" ]; then
-   dpms off
-fi
-
-# turn the mouse back on
-mouse on
+} &
