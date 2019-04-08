@@ -9,7 +9,7 @@
 #   alias ls='ls --color=auto'
 #   alias ll='ls -lAFh'
 #fi
-
+# todo use bat instead of cat
 # todo set ls depending if lsd exists or not
 alias ls='lsd -F --icon=never --date=relative'
 alias l='ls -l'
