@@ -1,5 +1,14 @@
 #!/usr/bin/env zsh
 
+function system_report {
+   if systemctl --failed > /dev/null; then
+      echo 'there are failed system services'
+      systemctl --failed
+
+      sudo journalctl -p 3 -xb
+   fi
+}
+
 #function list {
 #   case $1 in
 #      *.zip)
