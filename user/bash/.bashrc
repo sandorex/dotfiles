@@ -12,4 +12,5 @@ export TERM=xterm-256color
 
 ## load other files
 source ~/.bash/functions.sh
-source ~/.bash/aliases.sh
+#source ~/.bash/aliases.sh
+source ~/.bin/shell/aliases

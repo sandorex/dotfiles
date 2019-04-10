@@ -75,3 +75,5 @@ vagrant
 docker
 nvim
 powerline-fonts
+lsd
+zsh
