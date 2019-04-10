@@ -14,3 +14,4 @@ export TERM=xterm-256color
 source ~/.bash/functions.sh
 #source ~/.bash/aliases.sh
 source ~/.bin/shell/aliases
+source ~/.bin/paths/shell
