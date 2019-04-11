@@ -8,11 +8,8 @@ source "$HOME/.zgen/zgen.zsh"
 
 # get plugins and stuff
 if ! zgen saved; then
-#   zgen oh-my-zsh # provides bs aliases which i really dont want
-
    zgen oh-my-zsh plugins/sudo
 
-   #zgen load bhilburn/powerlevel9k powerlevel9k
    zgen load denysdovhan/spaceship-prompt spaceship
    
    zgen load zsh-users/zsh-autosuggestions
@@ -24,10 +21,6 @@ if ! zgen saved; then
 fi
 
 # plugin configuration
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(command_execution_time status background_jobs)
-POWERLEVEL9K_STATUS_OK=false
-
 SPACESHIP_PROMPT_ADD_NEWLINE=false
 SPACESHIP_GIT_BRANCH_SUFFIX=" "
 SPACESHIP_EXEC_TIME_ELAPSED=5
@@ -41,23 +34,29 @@ SPACESHIP_PROMPT_ORDER=(
    char
 )
 
-SPACESHIP_RPROMPT_ORDER=(
-   jobs
-)
+SPACESHIP_RPROMPT_ORDER=(jobs)
 
 # zsh options
+HISTFILE=~/.zhistory
+HISTSIZE=SAVEHIST=10000
+setopt sharehistory extendedhistory append_history hist_ignore_dups hist_ignore_space
+
 setopt no_beep
-
-setopt append_history
-setopt hist_ignore_dups
-setopt hist_ignore_space
 setopt no_clobber
-
 setopt no_match
 setopt auto_cd
+setopt interactive_comments
+
+# better globs
+setopt extendedglob
+unsetopt caseglob
 
 # nicer tab completion
 zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+
+compinit
+_comp_options+=(globdots)
 
 # set window title
 case $TERM in
@@ -71,9 +70,6 @@ source ~/.bin/paths/shell
 source ~/.zsh/aliases.zsh
 source ~/.zsh/functions.zsh
 source ~/.zsh/keybindings.zsh
-
-# add local config if it exists
-[ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
 
 # ensure exit status is zero
 :
