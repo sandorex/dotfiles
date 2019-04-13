@@ -41,15 +41,36 @@ HISTFILE=~/.zhistory
 HISTSIZE=SAVEHIST=10000
 setopt sharehistory extendedhistory append_history hist_ignore_dups hist_ignore_space
 
+# no beeps
 setopt no_beep
+
+# dont overwrite stuff with redirection
 setopt no_clobber
+
+# error when glob doesnt match anything
 setopt no_match
+
+# cd into a directory by typing the path
 setopt auto_cd
+
+# save comments in history
 setopt interactive_comments
+
+# report when background job finishes
+setopt notify
+
+# dont kill jobs when shell exits
+setopt no_hup
+
+# long format for jobs
+setopt long_list_jobs
+
+# dont match dotfiles
+setopt no_globdots
 
 # better globs
 setopt extendedglob
-unsetopt caseglob
+setopt no_caseglob
 
 # nicer tab completion
 zstyle ':completion:*' menu select
@@ -70,6 +91,10 @@ source ~/.bin/paths/shell
 source ~/.zsh/aliases.zsh
 source ~/.zsh/functions.zsh
 source ~/.zsh/keybindings.zsh
+
+# remove duplicate paths
+typeset -U PATH
+export PATH
 
 # ensure exit status is zero
 :

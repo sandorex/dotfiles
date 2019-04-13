@@ -10,9 +10,6 @@ keys[del]=${terminfo[kdch1]}
 keys[cdel]=${terminfo[kDC5]}
 keys[cbackspace]="^H"
 
-# enable ^Q and ^S
-stty -ixon
-
 bindkey "${keys[left]}" backward-word
 bindkey "${keys[right]}" forward-word
 
@@ -21,4 +18,9 @@ bindkey "${keys[cdel]}" delete-word
 
 bindkey "${keys[cbackspace]}" backward-delete-word
 
+stty -ixon # enables ^Q and ^S
 bindkey "^Q" push-input
+
+autoload -z edit-command-line
+zle -N edit-command-line
+bindkey "^X^E" edit-command-line

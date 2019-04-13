@@ -14,7 +14,9 @@ else
    alias llr='tree -a'
 fi
 
-alias rm='rm -i'
+alias -- -='cd -'
+
+alias rm='rm -I'
 alias cp='cp -i'
 alias mv='mv -i'
 alias mkdir='mkdir -p'
@@ -35,6 +37,12 @@ alias sysmon='glances -t 1'
 
 alias ctl='systemctl'
 alias uctl='systemctl --user'
+
+# git stuff
+alias gs='git status'
+alias gd='git diff'
+alias gc='git commit'
+alias ga='git add'
 
 # arch stuff
 alias system-update='pikaur -Syu'
