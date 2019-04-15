@@ -76,7 +76,15 @@ setopt no_caseglob
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 
-compinit
+# generate compinit only once a day
+autoload -Uz compinit
+
+for dump in ~/.zcompdump(N.mh+24); do
+  compinit
+done
+
+compinit -C
+
 _comp_options+=(globdots)
 
 # set window title
@@ -95,6 +103,3 @@ source ~/.zsh/keybindings.zsh
 # remove duplicate paths
 typeset -U PATH
 export PATH
-
-# ensure exit status is zero
-:
