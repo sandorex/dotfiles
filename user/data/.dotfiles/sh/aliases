@@ -32,8 +32,8 @@ alias c='clear'
 alias b='bat'
 alias e='edit'
 
-alias iomon='sudo iotop'
-alias sysmon='glances -t 1'
+alias iotop='sudo iotop'
+alias glances='glances -t 1'
 
 alias ctl='systemctl'
 alias uctl='systemctl --user'

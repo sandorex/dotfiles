@@ -95,10 +95,10 @@ case $TERM in
 esac
 
 # add additional files
-source ~/.bin/paths/shell
-source ~/.zsh/aliases.zsh
-source ~/.zsh/functions.zsh
-source ~/.zsh/keybindings.zsh
+source ~/.dotfiles/sh/all
+source ~/.dotfiles/zsh/aliases
+source ~/.dotfiles/zsh/functions
+source ~/.dotfiles/zsh/keybindings
 
 # remove duplicate paths
 typeset -U PATH
