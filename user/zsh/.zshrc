@@ -79,7 +79,7 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 # generate compinit only once a day
 autoload -Uz compinit
 
-for dump in ~/.zcompdump(N.mh+24); do
+for _ in ~/.zcompdump(N.mh+24); do
   compinit
 done
 
@@ -103,3 +103,6 @@ source ~/.dotfiles/zsh/keybindings
 # remove duplicate paths
 typeset -U PATH
 export PATH
+
+# startup
+updates_pending
