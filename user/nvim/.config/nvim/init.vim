@@ -39,6 +39,11 @@ set softtabstop=3
 " mapping
 noremap ; :
 
+" exit search by pressing enter
+nnoremap <CR> :noh<CR><CR>
+
+" TODO map space to Ctrl V (aka select)
+
 " -- hooks --
 " alert when file changes
 autocmd FileChangedShellPost * echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
