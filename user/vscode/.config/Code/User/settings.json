@@ -1,49 +1,45 @@
 {
-   // telemetry
+   /* telemetry */
    "telemetry.enableCrashReporter": false,
    "telemetry.enableTelemetry": false,
 
-   // customization
-   "editor.minimap.enabled": false,
-   "editor.formatOnSave": false,
-   "editor.fontSize": 25,
-   "editor.renderControlCharacters": false,
-   "editor.renderWhitespace": "none",
-   "editor.fontFamily": "'Hack Bold', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+   /* looks */
    "window.zoomLevel": 1,
+   "editor.fontSize": 23,
+   // "editor.fontFamily": "'Hack', Consolas, 'Courier New', monospace", // windows
+   "editor.fontFamily": "'Hack Bold', 'Droid Sans Mono', monospace", // linux
+   "workbench.colorTheme": "Solarized Dark",
+
+   /* base configuration */
    "window.titleBarStyle": "custom",
+   "editor.formatOnSave": false,
+   "editor.minimap.enabled": false,
    "workbench.sideBar.location": "left",
    "workbench.statusBar.feedback.visible": false,
    "workbench.activityBar.visible": true,
    "workbench.statusBar.visible": true,
-   "workbench.colorTheme": "One Dark Flatland Monokai",
    "workbench.editor.highlightModifiedTabs": true,
    "git.autoRepositoryDetection": false,
    "files.trimTrailingWhitespace": true,
-   "[markdown]": {
-      "files.trimTrailingWhitespace": false
-   },
+   "files.autoSave": "onFocusChange",
    "files.insertFinalNewline": true,
    "explorer.confirmDelete": false,
    "diffEditor.renderSideBySide": false,
    "breadcrumbs.enabled": false,
 
-   // indentation
+   /* indentation */
    "editor.detectIndentation": false,
    "editor.insertSpaces": true,
    "editor.tabSize": 3,
 
-   // os specific (linux)
-   "terminal.integrated.rendererType": "dom",
+   /* language specific */
+   "[markdown]": {
+      "files.trimTrailingWhitespace": false
+   },
 
-   // program paths
-   "C_Cpp.clang_format_path": "/usr/bin/clang-format",
-   "cmake.cmakePath": "/usr/bin/cmake",
-   "python.pythonPath": "/usr/bin/env python3",
-
-   // extension settings
+   /* extension settings */
    "liveServer.settings.donotShowInfoMsg": true,
-   "cmake.configureOnOpen": true,
-   "path-intellisense.showHiddenFiles": true,
-}
+   "cmake.configureOnOpen": false,
+   "path-intellisense.showHiddenFiles": true
+ }
 
