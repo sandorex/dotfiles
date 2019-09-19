@@ -5,9 +5,11 @@
 
    /* looks */
    "window.zoomLevel": 1,
-   "editor.fontSize": 23,
+   "editor.fontSize": 26,
    // "editor.fontFamily": "'Hack', Consolas, 'Courier New', monospace", // windows
+   // "terminal.integrated.fontFamily": "'Hack', Consolas, 'Courier New', monospace", // windows
    "editor.fontFamily": "'Hack Bold', 'Droid Sans Mono', monospace", // linux
+   "terminal.integrated.fontFamily": "'Hack Bold', 'Droid Sans Mono', monospace", // linux
    "workbench.colorTheme": "Solarized Dark",
 
    /* base configuration */
@@ -40,6 +42,7 @@
    /* extension settings */
    "liveServer.settings.donotShowInfoMsg": true,
    "cmake.configureOnOpen": false,
-   "path-intellisense.showHiddenFiles": true
+   "path-intellisense.showHiddenFiles": true,
+   "git.autofetch": true
  }
 
