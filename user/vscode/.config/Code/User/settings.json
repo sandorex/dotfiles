@@ -43,6 +43,26 @@
    "liveServer.settings.donotShowInfoMsg": true,
    "cmake.configureOnOpen": false,
    "path-intellisense.showHiddenFiles": true,
-   "git.autofetch": true
- }
+   "git.autofetch": true,
+   "highlight.regexes": {
+      "(TODO) ": {
+         "regexFlags": "g",
+         "decorations": [
+            { "color": "darkmagenta" },
+         ],
+      },
+      "(FIXME) ": {
+         "regexFlags": "g",
+         "decorations": [
+            { "color": "red" },
+         ]
+      },
+      "(NOTE) ": {
+         "regexFlags": "g",
+         "decorations": [
+            { "color": "lightblue" },
+         ]
+      }
+   }
+}
 
