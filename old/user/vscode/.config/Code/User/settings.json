@@ -4,7 +4,7 @@
    "telemetry.enableTelemetry": false,
 
    /* looks */
-   "window.zoomLevel": 1,
+   "window.zoomLevel": 0.7,
    "editor.fontSize": 26,
    // "editor.fontFamily": "'Hack', Consolas, 'Courier New', monospace", // windows
    // "terminal.integrated.fontFamily": "'Hack', Consolas, 'Courier New', monospace", // windows
