@@ -5,7 +5,7 @@
 
    /* looks */
    "window.zoomLevel": 0.7,
-   "editor.fontSize": 26,
+   "editor.fontSize": 22,
    // "editor.fontFamily": "'Hack', Consolas, 'Courier New', monospace", // windows
    // "terminal.integrated.fontFamily": "'Hack', Consolas, 'Courier New', monospace", // windows
    "editor.fontFamily": "'Hack Bold', 'Droid Sans Mono', monospace", // linux
@@ -43,26 +43,6 @@
    "liveServer.settings.donotShowInfoMsg": true,
    "cmake.configureOnOpen": false,
    "path-intellisense.showHiddenFiles": true,
-   "git.autofetch": true,
-   "highlight.regexes": {
-      "(TODO) ": {
-         "regexFlags": "g",
-         "decorations": [
-            { "color": "darkmagenta" },
-         ],
-      },
-      "(FIXME) ": {
-         "regexFlags": "g",
-         "decorations": [
-            { "color": "red" },
-         ]
-      },
-      "(NOTE) ": {
-         "regexFlags": "g",
-         "decorations": [
-            { "color": "lightblue" },
-         ]
-      }
-   }
+   "git.autofetch": true
 }
 
