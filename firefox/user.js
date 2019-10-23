@@ -39,6 +39,8 @@ user_pref("general.smoothScroll.lines.durationMinMS", 100);
 user_pref("general.smoothScroll.pages.durationMaxMS", 70)
 user_pref("general.smoothScroll.pages.durationMinMS", 40)
 
-/* linux */
-// without this scrolling is laggy af
+/* rendering */
 user_pref("media.hardware-video-decoding.force-enabled", true);
+user_pref("gfx.webrender.all", true);
+user_pref("gfx.webrender.enabled", true);
+user_pref("layers.omtp.enabled", true);
