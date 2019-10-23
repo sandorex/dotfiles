@@ -1,4 +1,6 @@
 #!/bin/sh
+# use 'code --list-extensions | xargs -L 1 echo code --install-extension' to gather
+
 code --install-extension christian-kohler.path-intellisense
 code --install-extension CoenraadS.bracket-pair-colorizer
 code --install-extension Gruntfuggly.todo-tree

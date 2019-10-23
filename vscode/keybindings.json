@@ -1,0 +1,7 @@
+[
+   {
+      "key": "alt+t",
+      "command": "python.runtests",
+      "when": "editorLangId == python"
+   }
+]
