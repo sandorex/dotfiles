@@ -14,7 +14,10 @@ F22 & L::Send, ^#{Right}   ; Virtual Desktop Right
 ; (https://www.nirsoft.net/utils/nircmd.html)
 ; requires nircmd to be installed
 ; turns off the monitor (standby)
-F22 & O::Run, nircmd.exe monitor off
+F22 & O::
+Sleep, 1500 ; sleep for 1.5s so you dont wake up the monitor
+Run, nircmd.exe monitor off
+Return
 
 ;; APP (F23)
 F23::Send, #{Tab}
