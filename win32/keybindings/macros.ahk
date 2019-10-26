@@ -9,7 +9,8 @@ SetWorkingDir %A_ScriptDir%
 ; should nircmd be used
 USE_NIRCMD = False
 
-CustomBeep() { ; custom beep function
+; custom beep function
+CustomBeep() {
    SoundBeep, 500, 200
 }
 
@@ -23,7 +24,7 @@ F22 & L::Send, ^#{Right}   ; Virtual Desktop Right
 F22 & O::
    CustomBeep()
    CustomBeep()
-   Sleep, 1500 ; sleep for 1.5s so you dont wake up the monitor by moving the mouse
+   Sleep, 1500 ; sleep so you dont wake up the monitor by moving the mouse
 
    If (USE_NIRCMD) {
       Run, nircmd.exe monitor off
@@ -38,5 +39,3 @@ F23 & R::
    CustomBeep()
    Reload
 Return
-
-; F23::Send, #{Tab}
