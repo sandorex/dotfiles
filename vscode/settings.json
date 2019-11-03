@@ -2,15 +2,16 @@
    /* telemetry */
    "telemetry.enableCrashReporter": false,
    "telemetry.enableTelemetry": false,
+   "workbench.enableExperiments": false,
+   "workbench.settings.enableNaturalLanguageSearch": false,
 
    /* looks */
-   "window.zoomLevel": 0.7,
+   "window.zoomLevel": 1,
    "editor.fontSize": 22,
-   // "editor.fontFamily": "'Hack', Consolas, 'Courier New', monospace", // windows
-   // "terminal.integrated.fontFamily": "'Hack', Consolas, 'Courier New', monospace", // windows
    "editor.fontFamily": "'Hack Bold', 'Droid Sans Mono', monospace", // linux
    "terminal.integrated.fontFamily": "'Hack Bold', 'Droid Sans Mono', monospace", // linux
-   "workbench.colorTheme": "Solarized Dark",
+   // "editor.fontFamily": "'Hack', Consolas, 'Courier New', monospace", // windows
+   // "terminal.integrated.fontFamily": "'Hack', Consolas, 'Courier New', monospace", // windows
 
    /* base configuration */
    "window.titleBarStyle": "custom",
@@ -43,6 +44,6 @@
    "liveServer.settings.donotShowInfoMsg": true,
    "cmake.configureOnOpen": false,
    "path-intellisense.showHiddenFiles": true,
-   "git.autofetch": true
+   "git.autofetch": true,
+   "workbench.colorTheme": "Dracula"
 }
-
