@@ -22,13 +22,15 @@
    "workbench.activityBar.visible": true,
    "workbench.statusBar.visible": true,
    "workbench.editor.highlightModifiedTabs": true,
-   "git.autoRepositoryDetection": false,
    "files.trimTrailingWhitespace": true,
    "files.autoSave": "onFocusChange",
    "files.insertFinalNewline": true,
    "explorer.confirmDelete": false,
    "diffEditor.renderSideBySide": false,
    "breadcrumbs.enabled": false,
+
+   "git.autofetch": true,
+   "git.autoRepositoryDetection": "subFolders",
 
    /* indentation */
    "editor.detectIndentation": false,
@@ -44,6 +46,5 @@
    "liveServer.settings.donotShowInfoMsg": true,
    "cmake.configureOnOpen": false,
    "path-intellisense.showHiddenFiles": true,
-   "git.autofetch": true,
    "workbench.colorTheme": "Dracula"
 }
