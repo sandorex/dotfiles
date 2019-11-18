@@ -12,6 +12,7 @@
    "terminal.integrated.fontFamily": "'Hack Bold', 'Droid Sans Mono', monospace", // linux
    // "editor.fontFamily": "'Hack', Consolas, 'Courier New', monospace", // windows
    // "terminal.integrated.fontFamily": "'Hack', Consolas, 'Courier New', monospace", // windows
+   "workbench.colorTheme": "Dracula",
 
    /* base configuration */
    "window.titleBarStyle": "custom",
@@ -29,9 +30,6 @@
    "diffEditor.renderSideBySide": false,
    "breadcrumbs.enabled": false,
 
-   "git.autofetch": true,
-   "git.autoRepositoryDetection": "subFolders",
-
    /* indentation */
    "editor.detectIndentation": false,
    "editor.insertSpaces": true,
@@ -43,8 +41,10 @@
    },
 
    /* extension settings */
+   "git.autofetch": true,
+   "python.linting.pylintEnabled": true,
+   "python.linting.mypyEnabled": true,
    "liveServer.settings.donotShowInfoMsg": true,
    "cmake.configureOnOpen": false,
    "path-intellisense.showHiddenFiles": true,
-   "workbench.colorTheme": "Dracula"
 }
