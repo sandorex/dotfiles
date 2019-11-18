@@ -1,13 +1,24 @@
 #!/bin/sh
-# use 'code --list-extensions | xargs -L 1 echo code --install-extension' to gather
+#
+# GENERATED: 2019-11-18_11-20-11
+# RUN './generate-package-install-script.sh' TO UPDATE THE SCRIPT
 
-code --install-extension christian-kohler.path-intellisense
-code --install-extension CoenraadS.bracket-pair-colorizer
-code --install-extension Gruntfuggly.todo-tree
-code --install-extension ms-python.python
-code --install-extension ms-vscode.cpptools
-code --install-extension reblws.one-dark-flatland-monokai
-code --install-extension ritwickdey.LiveServer
-code --install-extension sidneys1.gitconfig
-code --install-extension twxs.cmake
-code --install-extension vector-of-bool.cmake-tools
+if [ -z "$1" ]; then
+   echo "please provide path to vscode (name also works if the executable is in the \$PATH)"
+   exit 1
+fi
+
+"$1" --install-extension christian-kohler.path-intellisense
+"$1" --install-extension CoenraadS.bracket-pair-colorizer
+"$1" --install-extension dracula-theme.theme-dracula
+"$1" --install-extension emilast.LogFileHighlighter
+"$1" --install-extension fabiospampinato.vscode-highlight
+"$1" --install-extension formulahendry.code-runner
+"$1" --install-extension jeff-hykin.polacode-2019
+"$1" --install-extension ms-python.python
+"$1" --install-extension ms-vscode.cmake-tools
+"$1" --install-extension ms-vscode.cpptools
+"$1" --install-extension ms-vscode.Go
+"$1" --install-extension rust-lang.rust
+"$1" --install-extension slevesque.vscode-autohotkey
+"$1" --install-extension twxs.cmake
