@@ -1,5 +1,11 @@
 @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
 
+/* always show reader-view button */
+#reader-mode-button { 
+    display: -moz-box !important; 
+    visibility: visible !important;
+}
+
 /* only show close button when hovering */
 .tabbrowser-tab:not([selected]):not([pinned]) .tab-close-button {
   display: none !important;
