@@ -37,6 +37,9 @@ AUDIO_OUTPUT_INDEX := 1
 ; (used for matching windows)
 AUDIO_OUTPUT_NAME := "DELL U2414H"
 
+; how much to increment/decrement volume per keypress
+VOLUME_STEP := 2
+
 ; (https://www.nirsoft.net/utils/nircmd.html)
 ; should nircmd be used to force monitor to standby
 ; (use only if it doesn't work)
@@ -57,6 +60,10 @@ F22 & H::Send, ^#{Left}    ; Virtual Desktop Left
 F22 & J::Send, #{Tab}      ; Virtual Desktop Overview
 F22 & K::AltTab            ; Window Switcher
 F22 & L::Send, ^#{Right}   ; Virtual Desktop Right
+
+; volume up/down
+F22 & Up::SoundSet, +VOLUME_STEP
+F22 & Down::SoundSet, -VOLUME_STEP
 
 ;; F23
 ; reloads the ahk script
