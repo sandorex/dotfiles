@@ -39,6 +39,9 @@
    "[markdown]": {
       "files.trimTrailingWhitespace": false
    },
+   "[shellscript]": {
+      "files.eol": "\n"
+   },
 
    /* extension settings */
    "git.autofetch": true,
