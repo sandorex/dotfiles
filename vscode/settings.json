@@ -42,6 +42,7 @@
 
    /* extension settings */
    "git.autofetch": true,
+   "git.untrackedChanges": "separate",
    "python.linting.pylintEnabled": true,
    "python.linting.mypyEnabled": true,
    "liveServer.settings.donotShowInfoMsg": true,
