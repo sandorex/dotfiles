@@ -1,0 +1,91 @@
+#!/usr/bin/env python3
+#
+# (https://github.com/sandorex/scripts)
+# archive-git - archives modified and untracked files in the repository
+#
+# Copyright 2019 Aleksandar Radivojevic
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# 	 http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import os, sys, subprocess, zipfile, shutil
+
+from datetime import datetime
+
+## CONFIGURATION ##
+ARCHIVE_NAME = r'%Y-%m-%d_%H-%M-%S.zip'
+## CONFIGURATION ##
+
+def filter_shell(cmd):
+   process = subprocess.run(cmd, stdout = subprocess.PIPE)
+   if process.returncode != 0:
+      print('error running command', file = sys.stderr)
+      sys.exit(1)
+
+   return process.stdout.decode('utf-8')
+
+def gather_files():
+   files = []
+
+   files.extend(filter_shell([
+      'git', 'ls-files', '--others',            # only print non-tracked files
+                         '--exclude-standard'   # exclude files ignored by git
+   ]).splitlines())
+
+   files.extend(filter_shell([
+       'git', 'diff-files', '--diff-filter=d', # exclude deleted files
+                            '--name-only'      # only print the path
+   ]).splitlines())
+
+   # return only unique
+   return list(set(files))
+
+def archive_files(filename, files):
+   EXT = '.zip'
+
+   with zipfile.ZipFile(filename + EXT, 'w', compression = zipfile.ZIP_LZMA) as f:
+      for file in files:
+         f.write(file)
+
+   return filename + EXT
+
+def main(args = sys.argv):
+   cwd = os.getcwd()
+
+   # get root of git repository
+   git_root = filter_shell([ 'git', 'rev-parse', '--show-toplevel' ]).strip()
+
+   # is cwd the root of git repository
+   root = True
+
+   if not os.path.samefile(git_root, cwd):
+      os.chdir(git_root)
+      root = False
+
+   # format argument if passed
+   if len(args) > 1 and args[1]:
+      filename = datetime.now().strftime(args[1])
+   else:
+      filename = datetime.now().strftime(ARCHIVE_NAME)
+
+   # make the archive
+   with zipfile.ZipFile(filename, 'w', compression = zipfile.ZIP_LZMA) as archive:
+      for file in gather_files():
+         archive.write(file)
+
+   # move archive from root of git repository to the starting directory
+   if not root:
+      shutil.move(os.path.join(git_root, filename), os.path.join(cwd, filename))
+      os.chdir(cwd)
+
+if __name__ == "__main__":
+   main()
