@@ -23,8 +23,8 @@ import os, sys, subprocess, importlib
 TARGET_PATH = '$HOME/.dotfiles'
 TARGET_PATH_WINDOWS = 'Config'
 
-MAIN_REPOSITORY = 'git@github.com:sandorex/dotfiles.git'
-REPOSITORIES = [ 'git@github.com:sandorex/scripts.git' ]
+REPOSITORY = 'git@github.com:sandorex/dotfiles.git'
+SUB_REPOSITORIES = [ ]
 ## CONFIGURATION ##
 
 WINDOWS = bool(os.name == 'nt')
@@ -64,12 +64,12 @@ if answer.lower() not in [ 'yes', 'y' ]:
    print('Cancelled')
    sys.exit(0)
 
-clone(MAIN_REPOSITORY, TARGET_PATH)
+clone(REPOSITORY, TARGET_PATH)
 
 cwd = os.getcwd()
 os.chdir(TARGET_PATH)
 
-for repo in REPOSITORIES:
+for repo in SUB_REPOSITORIES:
    clone(repo)
 
 setup()
