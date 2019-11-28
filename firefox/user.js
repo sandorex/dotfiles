@@ -25,8 +25,8 @@ user_pref("ui.context_menus.after_mouseup", true);
 user_pref("general.smoothScroll.msdPhysics.enabled", true)
 
 // mousewheel
-user_pref("general.smoothScroll.mouseWheel.durationMaxMS", 150)
-user_pref("general.smoothScroll.mouseWheel.durationMinMS", 100)
+user_pref("general.smoothScroll.mouseWheel.durationMaxMS", 150);
+user_pref("general.smoothScroll.mouseWheel.durationMinMS", 100);
 user_pref("mousewheel.acceleration.factor", 4);
 user_pref("mousewheel.acceleration.start", 5);
 user_pref("mousewheel.min_line_scroll_amount", 20);
@@ -36,8 +36,8 @@ user_pref("general.smoothScroll.lines.durationMaxMS", 100);
 user_pref("general.smoothScroll.lines.durationMinMS", 100);
 
 // pgUp / pgDown
-user_pref("general.smoothScroll.pages.durationMaxMS", 70)
-user_pref("general.smoothScroll.pages.durationMinMS", 40)
+user_pref("general.smoothScroll.pages.durationMaxMS", 70);
+user_pref("general.smoothScroll.pages.durationMinMS", 40);
 
 /* rendering */
 user_pref("media.hardware-video-decoding.force-enabled", true);
