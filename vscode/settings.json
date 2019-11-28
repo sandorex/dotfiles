@@ -35,6 +35,11 @@
    "editor.insertSpaces": true,
    "editor.tabSize": 3,
 
+   /* extension detection */
+   "files.associations": {
+      "*.json": "jsonc"
+   },
+
    /* language specific */
    "[markdown]": {
       "files.trimTrailingWhitespace": false
