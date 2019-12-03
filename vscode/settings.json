@@ -1,58 +1,71 @@
+// VSCode Configuration
+//
+// Switch configurations by using multiline comments like
+// '/*' (disabled) and '//*' (enabled) remember to put '/**/'
+// at the end so it comment doesn't disable other stuff
+//
 {
-   /* telemetry */
+   // TELEMETRY
    "telemetry.enableCrashReporter": false,
    "telemetry.enableTelemetry": false,
    "workbench.enableExperiments": false,
    "workbench.settings.enableNaturalLanguageSearch": false,
 
-   /* looks */
-   "window.zoomLevel": 1,
+   // THEMING & LOOKS
    "editor.fontSize": 22,
-   "editor.fontFamily": "'Hack Bold', 'Droid Sans Mono', monospace", // linux
-   "terminal.integrated.fontFamily": "'Hack Bold', 'Droid Sans Mono', monospace", // linux
-   // "editor.fontFamily": "'Hack', Consolas, 'Courier New', monospace", // windows
-   // "terminal.integrated.fontFamily": "'Hack', Consolas, 'Courier New', monospace", // windows
-   "workbench.colorTheme": "Dracula",
-
-   /* base configuration */
-   "window.titleBarStyle": "custom",
-   "editor.formatOnSave": false,
+   "editor.rulers": [ 70, 90 ],
    "editor.minimap.enabled": false,
    "workbench.sideBar.location": "left",
-   "workbench.statusBar.feedback.visible": false,
    "workbench.activityBar.visible": true,
    "workbench.statusBar.visible": true,
    "workbench.editor.highlightModifiedTabs": true,
+   "window.zoomLevel": 1,
+   "window.titleBarStyle": "custom",
+   "workbench.colorTheme": "Dracula",
+   "breadcrumbs.enabled": false,
+
+   //* WINDOWS
+   "editor.fontFamily": "'Hack', Consolas, 'Courier New', monospace",
+   "terminal.integrated.fontFamily": "'Hack', Consolas, 'Courier New', monospace",
+   "python.pythonPath": "C:\\Program Files\\Python38\\python.exe", /**/
+
+   /* LINUX
+   "editor.fontFamily": "'Hack Bold', 'Droid Sans Mono', monospace",
+   "terminal.integrated.fontFamily": "'Hack Bold', 'Droid Sans Mono', monospace", /**/
+
+   // BEHAVIOUR
+   "editor.formatOnSave": false,
    "files.trimTrailingWhitespace": true,
    "files.autoSave": "onFocusChange",
    "files.insertFinalNewline": true,
-   "explorer.confirmDelete": false,
-   "diffEditor.renderSideBySide": false,
-   "breadcrumbs.enabled": false,
+   "files.encoding": "utf8",
+   "explorer.confirmDelete": true,
+   "diffEditor.renderSideBySide": true,
 
-   /* indentation */
+   // INDENTATION
    "editor.detectIndentation": false,
    "editor.insertSpaces": true,
    "editor.tabSize": 3,
 
-   /* extension detection */
+   // EXTENSIONS
    "files.associations": {
       "*.json": "jsonc"
    },
 
-   /* language specific */
+   // PER-LANGUAGE SETTINGS
    "[markdown]": {
       "files.trimTrailingWhitespace": false
    },
    "[shellscript]": {
+      "files.encoding": "utf8",
       "files.eol": "\n"
    },
 
-   /* extension settings */
+   // EXTENSION SETTINGS
    "git.autofetch": true,
    "git.untrackedChanges": "separate",
    "python.linting.pylintEnabled": true,
-   "python.linting.mypyEnabled": true,
+   "python.linting.enabled": true,
    "liveServer.settings.donotShowInfoMsg": true,
    "cmake.configureOnOpen": false,
    "path-intellisense.showHiddenFiles": true,
