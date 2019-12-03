@@ -1,0 +1,7 @@
+[user]
+   name = 'Sandorex'
+   email = 'rzhw3h@gmail.com'
+
+[alias]
+   s = status
+   ac = 'commit --allow-empty-message -m ""'
