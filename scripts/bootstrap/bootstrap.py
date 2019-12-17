@@ -23,7 +23,8 @@ import os, sys, subprocess, importlib
 TARGET_PATH = '$HOME/.dotfiles'
 TARGET_PATH_WINDOWS = 'Config'
 
-REPOSITORY = 'git@github.com:sandorex/dotfiles.git'
+REPOSITORY_SSH = 'git@github.com:sandorex/dotfiles.git'
+REPOSITORY_GIT = 'https://github.com/sandorex/dotfiles.git'
 SUB_REPOSITORIES = [ ]
 ## CONFIGURATION ##
 
@@ -35,13 +36,11 @@ def clone(repo, path = None):
    if path:
       args.append(path)
 
-   if subprocess.run(args).returncode != 0:
-      print(f"error while cloning '{repo}'", file = sys.stderr)
-      sys.exit(1)
+   return subprocess.run(args).returncode == 0
 
 def setup():
    def run_module(filename):
-      importlib.import_module(f'bootstrap.{filename}', 'bootstrap').main()
+      importlib.import_module(f'scripts.bootstrap.{filename}', 'bootstrap').main()
 
    # generate wrappers for windows
    if WINDOWS:
@@ -64,7 +63,13 @@ if answer.lower() not in [ 'yes', 'y' ]:
    print('Cancelled')
    sys.exit(0)
 
-clone(REPOSITORY, TARGET_PATH)
+if not clone(REPOSITORY_SSH, TARGET_PATH):
+   print(f"error while cloning using ssh '{REPOSITORY_SSH}'")
+   print(f"cloning using git '{REPOSITORY_GIT}'")
+
+   if not clone(REPOSITORY_GIT, TARGET_PATH):
+      print(f"error while cloning using git '{REPOSITORY_GIT}'")
+      sys.exit(1)
 
 cwd = os.getcwd()
 os.chdir(TARGET_PATH)
