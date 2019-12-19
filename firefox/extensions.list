@@ -1,20 +1,50 @@
-// list of extensions from about:support
+# GENERATED: 2019-12-19_21-06-56
+# RUN './generate-extension-list.sh' TO UPDATE THE SCRIPT
 
-Name 	                              Version 	   Enabled 	ID
-Auto Tab Discard	                  0.3.3	      true	   {c2c003ee-bd69-42a2-b0e9-6f34222cb046}
-Bitwarden - Free Password Manager	1.41.0	   true	   {446900e4-71c2-419f-a6a7-df9c091e268b}
-Containers Sync	                  1.1.2	      true	   sync@containers
-Dark Reader	                        4.8.5	      true	   addon@darkreader.org
-Facebook Container	               2.0.3	      true	   @contain-facebook
-Feedbro	                           4.0.2	      true	   {a9c2ad37-e940-4892-8dce-cd73c6cbbc0c}
-Firefox Multi-Account Containers	   6.1.1	      true	   @testpilot-containers
-HTTPS Everywhere	                  2019.11.7	true	   https-everywhere-eff@eff.org
-Imagus	                           0.9.8.72	   true	   {00000f2a-7cde-4f20-83ed-434fcb420d71}
-Nano Defender	                     15.0.0.170	true	   {fcf60470-b210-4c17-969e-9ae01491071e}
-Privacy Badger	                     2019.11.18	true	   jid1-MnnxcxisBPnSXQ@jetpack
-Privacy Pass	                     2.0.3	      true	   {48748554-4c01-49e8-94af-79662bf34d50}
-Session Sync	                     3.1.12	   true	   session-sync@gabrielivanica.com
-Stylus	                           1.5.6	      true	   {7a7a4a92-a2a0-41d1-9fd7-1e92480d612d}
-uBlock Origin	                     1.24.2	   true	   uBlock0@raymondhill.net
-YouTube NonStop	                  0.7.1	      true	   {0d7cafdd-501c-49ca-8ebb-e3341caaa55e}
-Dark Mode	                        0.3.5	      false	   {174b2d58-b983-4501-ab4b-07e71203cb43}
+uBlock Origin
+https://addons.mozilla.org/en-GB/firefox/addon/ublock-origin/
+
+Facebook Container
+https://addons.mozilla.org/en-GB/firefox/addon/facebook-container/
+
+Privacy Badger
+https://addons.mozilla.org/en-GB/firefox/addon/privacy-badger17/
+
+HTTPS Everywhere
+https://addons.mozilla.org/en-GB/firefox/addon/https-everywhere/
+
+Dark Reader
+https://addons.mozilla.org/en-GB/firefox/addon/darkreader/
+
+Firefox Multi-Account Containers
+https://addons.mozilla.org/en-GB/firefox/addon/multi-account-containers/
+
+Bitwarden - Free Password Manager
+https://addons.mozilla.org/en-GB/firefox/addon/bitwarden-password-manager/
+
+Stylus
+https://addons.mozilla.org/en-GB/firefox/addon/styl-us/
+
+Auto Tab Discard
+https://addons.mozilla.org/en-GB/firefox/addon/auto-tab-discard/
+
+SingleFile | Save a page as a single HTML file
+https://addons.mozilla.org/en-GB/firefox/addon/single-file/
+
+Nano Defender
+https://addons.mozilla.org/en-GB/firefox/addon/nano-defender-firefox/
+
+Privacy Pass
+https://addons.mozilla.org/en-GB/firefox/addon/privacy-pass/
+
+YouTube NonStop
+https://addons.mozilla.org/en-GB/firefox/addon/youtube-nonstop/
+
+Session Sync
+https://addons.mozilla.org/en-GB/firefox/addon/session-sync/
+
+Offline QR Code Generator
+https://addons.mozilla.org/en-GB/firefox/addon/offline-qr-code-generator/
+
+Containers Sync
+https://addons.mozilla.org/en-GB/firefox/addon/containers-sync/
