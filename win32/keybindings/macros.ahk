@@ -130,6 +130,17 @@ F23 & L::
    ControlClick, OK
 Return
 
+F23 & S::
+; beep three times
+Beep(3)
+
+; wait
+Sleep, 300
+
+; go to sleep (disables wake timers)
+DllCall("PowrProf\SetSuspendState", "int", 0, "int", 0, "int", 1)
+Return
+
 ; turns off the monitor (standby)
 F23 & O::
    ; beep twice
