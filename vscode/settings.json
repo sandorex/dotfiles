@@ -2,7 +2,7 @@
 //
 // Switch configurations by using multiline comments like
 // '/*' (disabled) and '//*' (enabled) remember to put '/**/'
-// at the end so it comment doesn't disable other stuff
+// at the end so the comment doesn't disable other stuff
 //
 {
    // TELEMETRY
@@ -41,6 +41,7 @@
    "files.encoding": "utf8",
    "explorer.confirmDelete": true,
    "diffEditor.renderSideBySide": true,
+   "editor.acceptSuggestionOnEnter": "off",
 
    // INDENTATION
    "editor.detectIndentation": false,
