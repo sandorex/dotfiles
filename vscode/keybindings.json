@@ -1,7 +1,24 @@
 [
    {
-      "key": "alt+t",
-      "command": "python.runtests",
-      "when": "editorLangId == python"
-   }
+      "key": "alt+d",
+      "command": "workbench.action.debug.start",
+      "when": "editorFocus && !inDebugMode"
+   },
+   {
+      "key": "alt+d",
+      "command": "workbench.action.debug.continue",
+      "when": "editorFocus && inDebugMode"
+   },
+
+   // fullscreen toggle of terminal
+   {
+      "key": "alt+`",
+      "command": "workbench.action.toggleMaximizedPanel",
+      "when": "!terminalFocus"
+   },
+   {
+      "key": "alt+`",
+      "command": "workbench.action.terminal.toggleTerminal",
+      "when": "terminalFocus"
+   },
 ]
