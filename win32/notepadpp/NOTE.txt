@@ -1,0 +1,1 @@
+Go to Settings > Preferences > Cloud and set this directory
