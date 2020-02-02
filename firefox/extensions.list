@@ -1,5 +1,5 @@
-# GENERATED: 2019-12-19_21-06-56
-# RUN './generate-extension-list.sh' TO UPDATE THE SCRIPT
+# GENERATED: 2020-02-02_17-00-57
+# RUN './generate-extension-list.sh <PROFILE>' TO UPDATE THE LIST
 
 uBlock Origin
 https://addons.mozilla.org/en-GB/firefox/addon/ublock-origin/
@@ -31,14 +31,14 @@ https://addons.mozilla.org/en-GB/firefox/addon/auto-tab-discard/
 SingleFile | Save a page as a single HTML file
 https://addons.mozilla.org/en-GB/firefox/addon/single-file/
 
-Nano Defender
+Nano Defender for Firefox
 https://addons.mozilla.org/en-GB/firefox/addon/nano-defender-firefox/
-
-Privacy Pass
-https://addons.mozilla.org/en-GB/firefox/addon/privacy-pass/
 
 YouTube NonStop
 https://addons.mozilla.org/en-GB/firefox/addon/youtube-nonstop/
+
+Privacy Pass
+https://addons.mozilla.org/en-GB/firefox/addon/privacy-pass/
 
 Session Sync
 https://addons.mozilla.org/en-GB/firefox/addon/session-sync/
@@ -48,3 +48,9 @@ https://addons.mozilla.org/en-GB/firefox/addon/offline-qr-code-generator/
 
 Containers Sync
 https://addons.mozilla.org/en-GB/firefox/addon/containers-sync/
+
+Better Image Viewer
+https://addons.mozilla.org/en-GB/firefox/addon/better-image-viewer/
+
+Tranquility Reader
+https://addons.mozilla.org/en-GB/firefox/addon/tranquility-1/

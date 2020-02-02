@@ -23,6 +23,8 @@ OUT_FILE=extensions.list
 # extensions, themes, and builtins
 EXTENSIONS_FILE=addons.json
 
+# TODO read default profile in the profiles.ini
+
 if [ -z "$1" ]; then
    echo "Please provide a path to the profile"
    exit 1
@@ -31,7 +33,7 @@ fi
 # add header
 cat << EOF > "$OUT_FILE"
 # GENERATED: $(date +"%Y-%0m-%0d_%0H-%0M-%0S")
-# RUN '$0' TO UPDATE THE SCRIPT
+# RUN '$0 <PROFILE>' TO UPDATE THE LIST
 
 EOF
 
