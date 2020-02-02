@@ -1,56 +1,59 @@
-# GENERATED: 2020-02-02_17-00-57
+# GENERATED: 2020-02-02_17-28-40
 # RUN './generate-extension-list.sh <PROFILE>' TO UPDATE THE LIST
 
 uBlock Origin
-https://addons.mozilla.org/en-GB/firefox/addon/ublock-origin/
+Finally, an efficient blocker. Easy on CPU and memory.
 
 Facebook Container
-https://addons.mozilla.org/en-GB/firefox/addon/facebook-container/
-
-Privacy Badger
-https://addons.mozilla.org/en-GB/firefox/addon/privacy-badger17/
-
-HTTPS Everywhere
-https://addons.mozilla.org/en-GB/firefox/addon/https-everywhere/
-
-Dark Reader
-https://addons.mozilla.org/en-GB/firefox/addon/darkreader/
+Facebook Container isolates your Facebook activity from the rest of your web activity in order to prevent Facebook from tracking you outside of the Facebook website via third party cookies.
 
 Firefox Multi-Account Containers
-https://addons.mozilla.org/en-GB/firefox/addon/multi-account-containers/
-
-Bitwarden - Free Password Manager
-https://addons.mozilla.org/en-GB/firefox/addon/bitwarden-password-manager/
-
-Stylus
-https://addons.mozilla.org/en-GB/firefox/addon/styl-us/
-
-Auto Tab Discard
-https://addons.mozilla.org/en-GB/firefox/addon/auto-tab-discard/
-
-SingleFile | Save a page as a single HTML file
-https://addons.mozilla.org/en-GB/firefox/addon/single-file/
-
-Nano Defender for Firefox
-https://addons.mozilla.org/en-GB/firefox/addon/nano-defender-firefox/
-
-YouTube NonStop
-https://addons.mozilla.org/en-GB/firefox/addon/youtube-nonstop/
-
-Privacy Pass
-https://addons.mozilla.org/en-GB/firefox/addon/privacy-pass/
+Multi-Account Containers helps you keep all the parts of your online life contained in different tabs. Custom labels and color-coded tabs help keep different activities — like online shopping, travel planning, or checking work email — separate.
 
 Session Sync
-https://addons.mozilla.org/en-GB/firefox/addon/session-sync/
+Save sessions as bookmarks and sync them through Firefox Sync (or any other sync engine).
+Powerful session management - organize, edit, change, save, restore, etc
+
+
+Stylus
+Redesign the web with Stylus, a user styles manager. Stylus allows you to easily install themes and skins for many popular sites.
+
+YouTube NonStop
+Kiss the annoying "Video paused. Continue watching?" confirmation goodbye!
+
+Privacy Pass
+Handles passes containing cryptographically blinded tokens for bypassing internet challenge.
+
+Auto Tab Discard
+Use native tab discard method to automatically reduce memory usage of inactive tabs
 
 Offline QR Code Generator
-https://addons.mozilla.org/en-GB/firefox/addon/offline-qr-code-generator/
+Allows you to generate a QR code for any website or tab, you have open.
+
+HTTPS Everywhere
+Encrypt the Web! Automatically use HTTPS security on many sites.
 
 Containers Sync
-https://addons.mozilla.org/en-GB/firefox/addon/containers-sync/
+Sync containers across multiple devices
+
+Bitwarden - Free Password Manager
+A secure and free password manager for all of your devices.
+
+Privacy Badger
+Privacy Badger automatically learns to block invisible trackers.
+
+Dark Reader
+Dark mode for every website. Take care of your eyes, use dark theme for night and daily browsing.
+
+Nano Defender for Firefox
+Companion extension for Nano Adblocker
+
+SingleFile
+Save a complete page into a single HTML file
 
 Better Image Viewer
-https://addons.mozilla.org/en-GB/firefox/addon/better-image-viewer/
+Enhances Firefox's image viewer with scroll-to-zoom and drag-to-pan functionality.
 
 Tranquility Reader
-https://addons.mozilla.org/en-GB/firefox/addon/tranquility-1/
+Make a page readable
+

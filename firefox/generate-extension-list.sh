@@ -19,9 +19,12 @@
 
 OUT_FILE=extensions.list
 
-# addons.json contains extensions while extensions.json contains
-# extensions, themes, and builtins
-EXTENSIONS_FILE=addons.json
+# schema version from extensions.json
+SCHEMA_VERSION=31
+
+# addons.json contains outdated info somehow..
+# using extensions.json from now on
+EXTENSIONS_FILE=extensions.json
 
 # TODO read default profile in the profiles.ini
 
@@ -30,7 +33,21 @@ if [ -z "$1" ]; then
    exit 1
 fi
 
-# add header
+# check schema version
+cat "$1/$EXTENSIONS_FILE" | python -c 'import json, sys
+schema = str(json.load(sys.stdin)["schemaVersion"])
+
+if sys.argv[1] != schema:
+   print("different schema versions")
+   print("{} != {}".format(sys.argv[1], schema))
+   sys.exit(1)
+' "$SCHEMA_VERSION"
+
+if [ $? -ne 0 ]; then
+   exit 1
+fi
+
+# generate header
 cat << EOF > "$OUT_FILE"
 # GENERATED: $(date +"%Y-%0m-%0d_%0H-%0M-%0S")
 # RUN '$0 <PROFILE>' TO UPDATE THE LIST
@@ -38,10 +55,13 @@ cat << EOF > "$OUT_FILE"
 EOF
 
 # write extensions
-cat "$1/$EXTENSIONS_FILE" |
-python -c 'import json, sys
+cat "$1/$EXTENSIONS_FILE" | python -c 'import json, sys
+
 for x in json.load(sys.stdin)["addons"]:
-   print(x["name"])
-   print(x["reviewURL"][:-len("reviews/")])
+   if x["type"] != "extension" or x["location"] != "app-profile":
+      continue
+
+   print(x["defaultLocale"]["name"])
+   print(x["defaultLocale"]["description"])
    print()' >> "$OUT_FILE"
 
