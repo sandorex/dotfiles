@@ -39,6 +39,7 @@
    "files.autoSave": "onFocusChange",
    "files.insertFinalNewline": true,
    "files.encoding": "utf8",
+   "explorer.autoReveal": false,
    "explorer.confirmDelete": true,
    "diffEditor.renderSideBySide": true,
    "editor.acceptSuggestionOnEnter": "off",
