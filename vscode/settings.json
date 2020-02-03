@@ -43,6 +43,7 @@
    "explorer.confirmDelete": true,
    "diffEditor.renderSideBySide": true,
    "editor.acceptSuggestionOnEnter": "off",
+   "workbench.editor.enablePreview": false,
 
    // INDENTATION
    "editor.detectIndentation": false,
@@ -77,5 +78,6 @@
    "python.linting.enabled": true,
    "liveServer.settings.donotShowInfoMsg": true,
    "cmake.configureOnOpen": false,
-   "path-intellisense.showHiddenFiles": true
+   "path-intellisense.showHiddenFiles": true,
+   "rust.clippy_preference": "on",
 }
