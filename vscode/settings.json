@@ -5,13 +5,13 @@
 // at the end so the comment doesn't disable other stuff
 //
 {
-   // TELEMETRY
+   // TELEMETRY //
    "telemetry.enableCrashReporter": false,
    "telemetry.enableTelemetry": false,
    "workbench.enableExperiments": false,
    "workbench.settings.enableNaturalLanguageSearch": false,
 
-   // THEMING & LOOKS
+   // THEMING & LOOKS //
    "editor.fontSize": 22,
    "editor.rulers": [ 70, 90 ],
    "editor.minimap.enabled": false,
@@ -24,6 +24,7 @@
    "workbench.colorTheme": "Dracula",
    "breadcrumbs.enabled": false,
 
+   // PLATFORM SPECIFIC //
    //* WINDOWS
    "editor.fontFamily": "'Hack', Consolas, 'Courier New', monospace",
    "terminal.integrated.fontFamily": "'Hack', Consolas, 'Courier New', monospace",
@@ -33,7 +34,7 @@
    "editor.fontFamily": "'Hack Bold', 'Droid Sans Mono', monospace",
    "terminal.integrated.fontFamily": "'Hack Bold', 'Droid Sans Mono', monospace", /**/
 
-   // BEHAVIOUR
+   // BEHAVIOUR //
    "editor.formatOnSave": false,
    "files.trimTrailingWhitespace": true,
    "files.autoSave": "onFocusChange",
@@ -45,17 +46,17 @@
    "editor.acceptSuggestionOnEnter": "off",
    "workbench.editor.enablePreview": false,
 
-   // INDENTATION
+   // INDENTATION //
    "editor.detectIndentation": false,
    "editor.insertSpaces": true,
    "editor.tabSize": 3,
 
-   // EXTENSIONS
+   // FILE EXTENSIONS //
    "files.associations": {
       "*.json": "jsonc"
    },
 
-   // PER-LANGUAGE SETTINGS
+   // PER-LANGUAGE SETTINGS //
    "[markdown]": {
       "files.trimTrailingWhitespace": false
    },
@@ -71,13 +72,24 @@
       "editor.formatOnSave": true
    },
 
-   // EXTENSION SETTINGS
+   // EXTENSION SETTINGS //
+   // GIT //
    "git.autofetch": true,
    "git.untrackedChanges": "separate",
+
+   // PYTHON //
    "python.linting.pylintEnabled": true,
    "python.linting.enabled": true,
+
+   // RUST //
+   "rust.clippy_preference": "on",
+   "rust.wait_to_build": 2500,
+
+   // very important, slows down the pc a lot!
+   "rust.all_targets": false,
+
+   // OTHER
    "liveServer.settings.donotShowInfoMsg": true,
    "cmake.configureOnOpen": false,
    "path-intellisense.showHiddenFiles": true,
-   "rust.clippy_preference": "on",
 }
