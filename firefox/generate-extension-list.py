@@ -34,8 +34,7 @@ from os.path import (
    expandvars as path_expand
 )
 
-HEADER = """
-# GENERATED: {date}
+HEADER = """# GENERATED: {time}
 # RUN '{file}' TO UPDATE THE SCRIPT
 
 """
@@ -106,7 +105,7 @@ def get_extensions(data):
       if extension["location"] != "app-profile":
          continue
 
-      extensions.append((extension["defaultLocale"]["name"], extension["defaultLocale"]["description"]))
+      extensions.append((extension["defaultLocale"]["name"].strip(), extension["defaultLocale"]["description"].strip()))
 
    return extensions
 
@@ -124,7 +123,7 @@ if not os.path.exists(profile_path):
    sys.exit(1)
 
 if not os.path.exists(profile_path):
-   print(f"path is not a directory '{profile_path}'")
+   print(f"error path is not a directory '{profile_path}'")
    sys.exit(1)
 
 with open(path_join(profile_path, EXTENSIONS_FILE), encoding='utf8') as f:
@@ -136,10 +135,11 @@ if SCHEMA_TARGET != schema_version:
    sys.exit(1)
 
 extensions = get_extensions(data)
-with open(EXTENSIONS_FILE, 'w') as f:
+with open(FILE_OUT, 'w') as f:
    f.write(HEADER.format(file=__file__, time=datetime.datetime.now().strftime(r'%Y-%m-%d_%H-%M-%S')))
 
    for name, desc in extensions:
       f.write(name)
-      f.write(desc)
       f.write('\n')
+      f.write(desc)
+      f.write('\n\n')
