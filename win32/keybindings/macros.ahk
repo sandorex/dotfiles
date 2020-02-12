@@ -1,6 +1,6 @@
 ﻿;; (https://github.com/sandorex/dotfiles)
 ;;
-;; Copyright 2019 Aleksandar Radivojevic
+;; Copyright 2019-2020 Aleksandar Radivojevic
 ;;
 ;; Licensed under the Apache License, Version 2.0 (the "License");
 ;; you may not use this file except in compliance with the License.
@@ -14,9 +14,10 @@
 ;; See the License for the specific language governing permissions and
 ;; limitations under the License.
 ;;
+;;
 ;; (https://github.com/randyrants/sharpkeys)
 ;; keys remapped using SharpKeys
-;;;
+;;
 ;; F22 = CAPSLOCK
 ;; F23 = APP
 
@@ -39,11 +40,6 @@ AUDIO_OUTPUT_NAME := "DELL U2414H"
 
 ; how much to increment/decrement volume per keypress
 VOLUME_STEP := 2
-
-; (https://www.nirsoft.net/utils/nircmd.html)
-; should nircmd be used to force monitor to standby
-; (use only if it doesn't work)
-NIRCMD_MONITOR_STANDBY = False
 
 TIMEOUT := 2
 
@@ -131,11 +127,18 @@ F23 & L::
 Return
 
 F23 & S::
-; beep three times
-Beep(3)
+; Ok/Cancel dialog that has timeout of 4 seconds
+MsgBox, % 0x1 + 0x30, Macros Sleep Inducing Window, The computer will be put to sleep in few seconds, 4
 
-; wait
-Sleep, 300
+; canceel is pressed
+IfMsgBox, Cancel
+   Return
+
+; tiny delay when confirming with the mouse
+IfMsgBox, Ok
+   Sleep, 600
+
+Beep()
 
 ; go to sleep (disables wake timers)
 DllCall("PowrProf\SetSuspendState", "int", 0, "int", 0, "int", 1)
@@ -143,15 +146,18 @@ Return
 
 ; turns off the monitor (standby)
 F23 & O::
-   ; beep twice
-   Beep(2)
+   ; Ok/Cancel dialog that has timeout of 2 seconds
+   MsgBox, % 0x1 + 0x30, Macros Standby Inducing Window, The monitor will be put to standby in few seconds, 2
 
-   ; delay so monitor is not woken up before even going to sleep
-   Sleep, 1100
+   ; canceel is pressed
+   IfMsgBox, Cancel
+      Return
 
-   If (NIRCMD_MONITOR_STANDBY) {
-      Run, nircmd.exe monitor off
-   } Else {
-      SendMessage, 0x112, 0xF170, 2,, Program Manager
-   }
+   ; tiny delay when confirming with the mouse
+   IfMsgBox, Ok
+      Sleep, 600
+
+   Beep()
+
+   SendMessage, 0x112, 0xF170, 2,, Program Manager
 Return
