@@ -1,11 +1,8 @@
-# GENERATED: 2020-02-05_19-53-32
-# RUN '.\generate-extension-list.py' TO UPDATE THE SCRIPT
+# GENERATED: 2020-02-12_18-41-56
+# RUN './generate-extension-list.py' TO UPDATE THE SCRIPT
 
 Facebook Container
 Facebook Container isolates your Facebook activity from the rest of your web activity in order to prevent Facebook from tracking you outside of the Facebook website via third party cookies.
-
-Firefox Multi-Account Containers
-Multi-Account Containers helps you keep all the parts of your online life contained in different tabs. Custom labels and color-coded tabs help keep different activities — like online shopping, travel planning, or checking work email — separate.
 
 Session Sync
 Save sessions as bookmarks and sync them through Firefox Sync (or any other sync engine).
@@ -29,17 +26,11 @@ Allows you to generate a QR code for any website or tab, you have open.
 HTTPS Everywhere
 Encrypt the Web! Automatically use HTTPS security on many sites.
 
-Containers Sync
-Sync containers across multiple devices
-
 Bitwarden - Free Password Manager
 A secure and free password manager for all of your devices.
 
 Privacy Badger
 Privacy Badger automatically learns to block invisible trackers.
-
-Nano Defender for Firefox
-Companion extension for Nano Adblocker
 
 Better Image Viewer
 Enhances Firefox's image viewer with scroll-to-zoom and drag-to-pan functionality.
@@ -47,12 +38,18 @@ Enhances Firefox's image viewer with scroll-to-zoom and drag-to-pan functionalit
 Tranquility Reader
 Make a page readable
 
+uBlock Origin
+Finally, an efficient blocker. Easy on CPU and memory.
+
 Dark Reader
 Dark mode for every website. Take care of your eyes, use dark theme for night and daily browsing.
 
 SingleFile
 Save a complete page into a single HTML file
 
-uBlock Origin
-Finally, an efficient blocker. Easy on CPU and memory.
+Nano Defender for Firefox
+Companion extension for Nano Adblocker
+
+Firefox Multi-Account Containers
+Multi-Account Containers helps you keep all the parts of your online life contained in different tabs. Custom labels and color-coded tabs help keep different activities — like online shopping, travel planning, or checking work email — separate.
 

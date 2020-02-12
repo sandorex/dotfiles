@@ -122,7 +122,7 @@ if not os.path.exists(profile_path):
    print(f"error path does not exist '{profile_path}'")
    sys.exit(1)
 
-if not os.path.exists(profile_path):
+if not os.path.isdir(profile_path):
    print(f"error path is not a directory '{profile_path}'")
    sys.exit(1)
 
