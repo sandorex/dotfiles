@@ -124,6 +124,9 @@ F23 & L::
 
    ; confirm with button 'OK' to close it
    ControlClick, OK
+
+   ; beep to confirm it was toggled
+   Beep()
 Return
 
 F23 & S::
@@ -137,8 +140,6 @@ IfMsgBox, Cancel
 ; tiny delay when confirming with the mouse
 IfMsgBox, Ok
    Sleep, 600
-
-Beep()
 
 ; go to sleep (disables wake timers)
 DllCall("PowrProf\SetSuspendState", "int", 0, "int", 0, "int", 1)
