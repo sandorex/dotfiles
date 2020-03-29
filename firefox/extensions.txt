@@ -1,21 +1,12 @@
-# GENERATED: 2020-02-12_18-41-56
+# GENERATED: 2020-03-29_14-33-08
 # RUN './generate-extension-list.py' TO UPDATE THE SCRIPT
-
-Facebook Container
-Facebook Container isolates your Facebook activity from the rest of your web activity in order to prevent Facebook from tracking you outside of the Facebook website via third party cookies.
 
 Session Sync
 Save sessions as bookmarks and sync them through Firefox Sync (or any other sync engine).
 Powerful session management - organize, edit, change, save, restore, etc
 
-Stylus
-Redesign the web with Stylus, a user styles manager. Stylus allows you to easily install themes and skins for many popular sites.
-
 YouTube NonStop
 Kiss the annoying "Video paused. Continue watching?" confirmation goodbye!
-
-Privacy Pass
-Handles passes containing cryptographically blinded tokens for bypassing internet challenge.
 
 Auto Tab Discard
 Use native tab discard method to automatically reduce memory usage of inactive tabs
@@ -23,33 +14,45 @@ Use native tab discard method to automatically reduce memory usage of inactive t
 Offline QR Code Generator
 Allows you to generate a QR code for any website or tab, you have open.
 
-HTTPS Everywhere
-Encrypt the Web! Automatically use HTTPS security on many sites.
-
-Bitwarden - Free Password Manager
-A secure and free password manager for all of your devices.
+Better Image Viewer
+Enhances Firefox's image viewer with scroll-to-zoom and drag-to-pan functionality.
 
 Privacy Badger
 Privacy Badger automatically learns to block invisible trackers.
 
-Better Image Viewer
-Enhances Firefox's image viewer with scroll-to-zoom and drag-to-pan functionality.
+Firefox Multi-Account Containers
+Multi-Account Containers helps you keep all the parts of your online life contained in different tabs. Custom labels and color-coded tabs help keep different activities â€” like online shopping, travel planning, or checking work email â€” separate.
 
-Tranquility Reader
-Make a page readable
+Stylus
+Redesign the web with Stylus, a user styles manager. Stylus allows you to easily install themes and skins for many popular sites.
+
+Facebook Container
+Facebook Container isolates your Facebook activity from the rest of your web activity in order to prevent Facebook from tracking you outside of the Facebook website via third party cookies.
 
 uBlock Origin
 Finally, an efficient blocker. Easy on CPU and memory.
 
+Tranquility Reader
+Make a page readable
+
+Bitwarden - Free Password Manager
+A secure and free password manager for all of your devices.
+
 Dark Reader
 Dark mode for every website. Take care of your eyes, use dark theme for night and daily browsing.
+
+Privacy Pass
+Handles passes containing cryptographically blinded tokens for bypassing internet challenge.
 
 SingleFile
 Save a complete page into a single HTML file
 
+HTTPS Everywhere
+Encrypt the Web! Automatically use HTTPS security on many sites.
+
 Nano Defender for Firefox
 Companion extension for Nano Adblocker
 
-Firefox Multi-Account Containers
-Multi-Account Containers helps you keep all the parts of your online life contained in different tabs. Custom labels and color-coded tabs help keep different activities — like online shopping, travel planning, or checking work email — separate.
+GNOME Shell integration
+This extension provides integration with GNOME Shell and the corresponding extensions repository https://extensions.gnome.org
 

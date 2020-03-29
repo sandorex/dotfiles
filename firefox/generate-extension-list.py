@@ -28,11 +28,8 @@ SCHEMA_TARGET = 31
 
 import json, sys, os, configparser, datetime
 
-from os.path import (
-   join as path_join,
-   normpath as path_normalize,
-   expandvars as path_expand
-)
+from os.path import (join as path_join, normpath as path_normalize, expandvars
+                     as path_expand)
 
 HEADER = """# GENERATED: {time}
 # RUN '{file}' TO UPDATE THE SCRIPT
@@ -42,56 +39,10 @@ HEADER = """# GENERATED: {time}
 # file that contains extension names
 EXTENSIONS_FILE = 'extensions.json'
 
-# file that contains list of the profiles
-PROFILES_FILE = 'profiles.ini'
-
-# directory where profiles.ini is located at
-PROFILES_DIR_LINUX = '$HOME/.mozilla/firefox' # TODO idk where they are
-PROFILES_DIR_WINDOWS = '$APPDATA/Mozilla/Firefox'
-
-WINDOWS = bool(os.name == 'nt')
-
-PROFILES_DIR = path_expand(PROFILES_DIR_WINDOWS if WINDOWS else PROFILES_DIR_LINUX)
-PROFILES_FILE = path_join(PROFILES_DIR, PROFILES_FILE)
-
-def get_default_profile_path():
-   parser = configparser.ConfigParser()
-
-   with open(PROFILES_FILE) as f:
-      parser.read_file(f)
-
-   last_used_profile = None
-   for k in parser.keys():
-      # skip non profile sections
-      if k in ['DEFAULT', 'General']:
-         continue
-
-      # skip locked sections (i don't know what they are)
-      if parser.getboolean(k, "Locked", fallback=False):
-         continue
-
-      if parser.getint(k, "Default", fallback=None) == 1:
-         last_used_profile = k
-         break
-
-   if last_used_profile is None:
-      print('default profile not found')
-      return None
-
-   profile_path = parser.get(last_used_profile, "Path", fallback=None)
-   profile_path_is_relative = parser.getint(last_used_profile, "IsRelative", fallback=None)
-
-   if profile_path is None or profile_path_is_relative is None:
-      print('invalid configuration')
-      return None
-
-   if profile_path_is_relative == 1:
-      return path_join(PROFILES_DIR, profile_path)
-   else:
-      return profile_path
 
 def get_schema_version(data):
    return data['schemaVersion']
+
 
 def get_extensions(data):
    extensions = []
@@ -105,16 +56,17 @@ def get_extensions(data):
       if extension["location"] != "app-profile":
          continue
 
-      extensions.append((extension["defaultLocale"]["name"].strip(), extension["defaultLocale"]["description"].strip()))
+      extensions.append((extension["defaultLocale"]["name"].strip(),
+                         extension["defaultLocale"]["description"].strip()))
 
    return extensions
+
 
 profile_path = sys.argv[1] if len(sys.argv) > 1 else None
 
 if profile_path is None:
-   profile_path = get_default_profile_path()
-elif not os.path.isabs(profile_path):
-   profile_path = path_join(PROFILES_DIR, profile_path)
+   print('please enter the path to the profile')
+   sys.exit(1)
 
 profile_path = path_normalize(profile_path)
 
@@ -131,12 +83,16 @@ with open(path_join(profile_path, EXTENSIONS_FILE), encoding='utf8') as f:
 
 schema_version = get_schema_version(data)
 if SCHEMA_TARGET != schema_version:
-   print('error schema version is different {} != {}'.format(SCHEMA_TARGET, schema_version))
+   print('error schema version is different {} != {}'.format(
+       SCHEMA_TARGET, schema_version))
    sys.exit(1)
 
 extensions = get_extensions(data)
 with open(FILE_OUT, 'w') as f:
-   f.write(HEADER.format(file=__file__, time=datetime.datetime.now().strftime(r'%Y-%m-%d_%H-%M-%S')))
+   f.write(
+       HEADER.format(
+           file=__file__,
+           time=datetime.datetime.now().strftime(r'%Y-%m-%d_%H-%M-%S')))
 
    for name, desc in extensions:
       f.write(name)
