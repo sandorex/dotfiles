@@ -1,0 +1,7 @@
+#!/usr/bin/env zsh
+#
+# this file is supposed to replace ~/.zprofile
+
+[ -f ~/.profile ] && source ~/.profile
+
+[ -f ~/.zshrc ] && source ~/.zshrc

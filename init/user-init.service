@@ -1,11 +1,12 @@
 [Unit]
 Description=User Initialization
-ConditionPathExists=%h/.bin/init/init.sh
+ConditionPathExists=%h/dotfiles/init/init.sh
 
 [Service]
-ExecStart=%h/.bin/init/init.sh
+ExecStart=%h/dotfiles/init/init.sh
 Restart=on-failure
 RestartSec=5
 
+# TODO make it run only after xorg
 [Install]
 WantedBy=default.target

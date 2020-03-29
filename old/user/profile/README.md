@@ -1,1 +1,0 @@
-`~/.bash_profile` mustn't exist for this to work

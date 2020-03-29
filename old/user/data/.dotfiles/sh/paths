@@ -1,6 +1,0 @@
-#!/bin/sh
-# this file adds paths that should be available to any user shell
-
-PATH=$PATH:$HOME/.bin
-
-[ -d "$HOME/Dropbox/bin" ] && PATH=$PATH:$HOME/Dropbox/bin

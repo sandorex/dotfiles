@@ -1,4 +1,0 @@
-#!/bin/sh
-source ~/.dotfiles/sh/functions
-source ~/.dotfiles/sh/aliases
-source ~/.dotfiles/sh/paths

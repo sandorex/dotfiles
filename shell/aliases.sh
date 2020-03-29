@@ -7,7 +7,7 @@ if command -v lsd > /dev/null; then
    alias ll='l -a'
    alias llr='ll --tree'
 else
-   alias ls='ls -F --color=auto'
+   alias ls='ls -Fh --color=auto'
    alias l='ls -l'
    alias lr='tree'
    alias ll='l -A'
@@ -15,7 +15,6 @@ else
 fi
 
 alias -- -='cd -'
-
 alias rm='rm -I'
 alias cp='cp -i'
 alias mv='mv -i'
@@ -37,14 +36,3 @@ alias glances='glances -t 1'
 
 alias ctl='systemctl'
 alias uctl='systemctl --user'
-
-# git stuff
-alias gs='git status'
-alias gd='git diff'
-alias gc='git commit'
-alias ga='git add'
-
-# arch stuff
-alias system-update='pikaur -Syu'
-alias pkgs='pikaur -Ss'
-alias pkgi='pikaur -S'
