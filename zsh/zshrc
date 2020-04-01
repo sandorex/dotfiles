@@ -1,5 +1,11 @@
 #!/usr/bin/env zsh
 
+# load shell init file (only if it exists)
+[ -f ~/.shell ] && source ~/.shell
+
+# the rest is only if it's an interactive shell
+[[ -o interactive ]] || return
+
 ## zsh options ##
 HISTFILE=~/.zhistory
 HISTSIZE=SAVEHIST=10000
@@ -46,6 +52,7 @@ autoload -Uz compinit
 for _ in ~/.zcompdump(N.mh+24); do
    echo "Generating compinit, this may take a while.."
    compinit
+   clear
 done
 
 compinit -C
@@ -60,18 +67,22 @@ case $TERM in
         ;;
 esac
 
-[ -f ~/.profile ] && source ~/.profile
-
 # load additional files (only if dotfiles exist)
 if [ -d "$DOTFILES" ]; then
    source "$DOTFILES"/zsh/packages.zsh
    source "$DOTFILES"/zsh/functions.zsh
    source "$DOTFILES"/zsh/aliases.zsh
    source "$DOTFILES"/zsh/keybindings.zsh
-   source "$DOTFILES"/shell/common.sh
-   source "$DOTFILES"/shell/user-path.sh
 else
    echo "Dotfiles not found only basic options were set"
+fi
+
+if command -v starship > /dev/null; then
+   eval "$(starship init zsh)"
+else
+   echo "Starship not found, basic prompt will be used"
+   PS1="\[$(tput bold)\]\[$(tput setaf 5)\]\w\\n\[$(tput setaf 3)\]\\$ \[$(tput sgr0)\]"
+   export PS1
 fi
 
 # remove duplicate paths

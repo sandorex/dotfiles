@@ -1,9 +1,0 @@
-#!/bin/bash
-#
-# this file is supposed to replace ~/.bash_profile
-
-# shellcheck source=../shell/profile
-[ -f ~/.profile ] && source ~/.profile
-
-# shellcheck source=./bashrc
-[ -f ~/.bashrc ] && source ~/.bashrc

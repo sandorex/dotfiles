@@ -1,5 +1,9 @@
 #!/bin/bash
-# run only in interactive shells
+
+# load shell init file (only if it exists)
+[ -f ~/.shell ] && source ~/.shell
+
+# the rest is only if it's an interactive shell
 [[ $- != *i* ]] && return
 
 # terminal options #
@@ -9,24 +13,20 @@ shopt -s autocd
 # ignore duplicate commands and commands prefixed by space in history
 HISTCONTROL=ignoreboth
 
-PS1="\[$(tput bold)\]\[$(tput setaf 5)\]\w\\n\[$(tput setaf 3)\]\\$ \[$(tput sgr0)\]"
-export PS1
-
-[ -f /etc/bashrc ] && source /etc/bashrc
-
-# shellcheck source=../shell/profile
-[ -f ~/.profile ] && source ~/.profile
+# [ -f /etc/bashrc ] && source /etc/bashrc
 
 # load additional files (only if dotfiles exist)
 if [ -d "$DOTFILES" ]; then
-   # shellcheck source=../shell/common.sh
-   source "$DOTFILES"/shell/common.sh
-
-   # shellcheck source=../shell/aliases.sh
    source "$DOTFILES"/shell/aliases.sh
-
-   # shellcheck source=../shell/user-path.sh
-   source "$DOTFILES"/shell/user-path.sh
 else
    echo "Dotfiles not found only basic options were set"
+fi
+
+if command -v starship > /dev/null; then
+   eval "$(starship init bash)"
+else
+   echo "Starship not found, basic prompt will be used"
+
+   PS1="\[$(tput bold)\]\[$(tput setaf 5)\]\w\\n\[$(tput setaf 3)\]\\$ \[$(tput sgr0)\]"
+   export PS1
 fi
