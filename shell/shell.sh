@@ -30,15 +30,8 @@ add() {
 
 # rust
 add "$HOME"/.cargo/bin
-# PATH=$PATH:"$HOME/.cargo/bin"
-
 # pip
 add "$HOME"/.local/bin
-# PATH=$PATH:"$HOME/.local/bin"
 
-# gem
-# TODO change into a for loop
-# add "$HOME"/.gem/ruby/*/bin
-# [ -d "$HOME"/.gem/ruby/ ] && PATH=$PATH:"$HOME/.gem/ruby/*/bin"
-
+# clean up
 unset add
