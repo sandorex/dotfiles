@@ -46,26 +46,14 @@ setopt no_caseglob
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 
-# generate compinit only once a day
-autoload -Uz compinit
-
-for _ in ~/.zcompdump(N.mh+24); do
-   echo "Generating compinit, this may take a while.."
-   compinit
-   clear
-done
-
-compinit -C
-
-# show dotfiles with tab completion
-_comp_options+=(globdots)
-
 # set window title
 case $TERM in
     xterm*)
         precmd () { print -Pn "\e]0;%n in %~\a" }
         ;;
 esac
+
+autoload -Uz compinit
 
 # load additional files (only if dotfiles exist)
 if [ -d "$DOTFILES" ]; then
@@ -84,6 +72,18 @@ else
    PS1="\[$(tput bold)\]\[$(tput setaf 5)\]\w\\n\[$(tput setaf 3)\]\\$ \[$(tput sgr0)\]"
    export PS1
 fi
+
+# generate compinit only every 4 hours
+for _ in ~/.zcompdump(N.mh+4); do
+   echo "Generating compinit, this may take a while.."
+   compinit
+   clear
+done
+
+compinit -C
+
+# show dotfiles with tab completion
+_comp_options+=(globdots)
 
 # remove duplicate paths
 typeset -U PATH
