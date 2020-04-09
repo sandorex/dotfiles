@@ -17,86 +17,110 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import os, sys, argparse, datetime, subprocess
-
+import argparse
+import datetime
+import os
+import subprocess
+import sys
+from http.server import BaseHTTPRequestHandler, HTTPServer
+from os.path import exists
+from os.path import isfile as file_exists
+from os.path import join as join_path
 from urllib.parse import unquote_plus
-from http.server import HTTPServer, BaseHTTPRequestHandler
 
 AP = argparse.ArgumentParser()
 
-AP.add_argument('--script', type = str, metavar = 'PATH',
-               help = 'Execute script with GET request as first parameter')
-AP.add_argument('--logfile', type = str, metavar = 'PATH',
-               help = 'Path to logfile')
+AP.add_argument(
+    '--script',
+    type=str,
+    metavar='PATH',
+    help='Execute script with the path requested as first parameter')
+AP.add_argument('--logfile', type=str, metavar='PATH', help='Path to logfile')
 
-ll_group = AP.add_mutually_exclusive_group()
-ll_group.add_argument('-q', '--quiet', action = 'store_true',
-               help = 'Do not print to console')
-
-AP.add_argument('-p', '--port', type = int, default = 80,
-               help = 'Port for http server (default 80)')
-AP.add_argument('-a', '--address', type = str, default = '',
-               help = 'IP address for http server (default 0.0.0.0)')
+AP.add_argument('-q',
+                '--quiet',
+                action='store_true',
+                help='Do not print to console')
+AP.add_argument('-p',
+                '--port',
+                type=int,
+                default=80,
+                help='Port for http server (default 80)')
+AP.add_argument('-a',
+                '--address',
+                type=str,
+                default='',
+                help='IP address for http server (default 0.0.0.0)')
 
 ARGS = AP.parse_intermixed_args()
 
+LOGFILE = None
+
+
 class Handler(BaseHTTPRequestHandler):
+   PATH_BLACKLIST = ['/favicon.ico']
+
    def response(self, code):
       self.send_response(code)
-      self.send_header('Content-type','text/plain')
+      self.send_header('Content-type', 'text/plain')
       self.end_headers()
 
    def do_GET(self):
-      self.response(202) # accepted
+      if self.path in Handler.PATH_BLACKLIST:
+         self.response(400)  # bad request
+         return
 
-      # decode it from url encoding
-      path = unquote_plus(self.path)
+      self.response(202)  # accepted
 
-      if ARGS.logfile:
-         with open(ARGS.logfile, 'a') as file:
-            file.write(path[1:]) # removes the slash
-            file.write('\n')
+      # decode it from the url encoding
+      data = unquote_plus(self.path)[1:]
 
-      # if ARGS.script:
-      #    if os.name == 'nt':
-      #       cmd = 'start'
-      #    else:
-      #       cmd = 'exec'
+      # TODO logging messages if not quiet
+      if not data:
+         return
 
-      #    subprocess.run([ ARGS.script, path ])
+      if LOGFILE is not None:
+         LOGFILE.write(f'==[[{self.address_string()}]\n')
+         LOGFILE.write(data)
+         LOGFILE.write('\n]]==\n')
+         LOGFILE.flush()
+
+      if ARGS.script is not None:
+         # TODO pass rest of parameters after '--'
+         try:
+            subprocess.check_call([ARGS.script, data])
+         except subprocess.CalledProcessError as ex:
+            print('Script has failed with:')
+            print(ex)
 
    def log_message(self, format, *args):
-      if not ARGS.quiet:
-         super().log_message(format, *args)
+      pass
+
 
 if __name__ == "__main__":
+   server = HTTPServer((ARGS.address, ARGS.port), Handler)
+
    if ARGS.script is not None:
-      if os.path.exists(ARGS.script):
-         if not os.path.isfile(ARGS.script):
+      if exists(ARGS.script):
+         if not file_exists(ARGS.script):
             AP.error(f"Script path '{ARGS.script}' is not a file")
       else:
          AP.error(f"Script path '{ARGS.script}' does not exist")
 
    if ARGS.logfile is not None:
-      if os.path.exists(ARGS.logfile):
-         if not os.path.isfile(ARGS.logfile):
-            AP.error(f"Logfile path '{ARGS.logfile}' exists and is not a file")
+      if exists(ARGS.logfile):
+         # TODO argument to overwrite the logfile or append it
+         if not file_exists(ARGS.logfile):
+            AP.error(f"Logfile path '{ARGS.logfile}' exists but isn't a file")
 
-   # if '--' in sys.argv:
-   #    pass
+      LOGFILE = open(ARGS.logfile, 'a')
 
-   print(ARGS)
-
-   if ARGS.logfile is not None:
-      with open(ARGS.logfile, 'a') as file:
-         file.write(f'\n--- {datetime.datetime.now()} ---\n\n')
-
-   server = HTTPServer((ARGS.address, ARGS.port), Handler)
-
-   if not ARGS.quiet:
-      print(f"Serving at {server.server_address[0]}:{server.server_address[1]}")
+   print(f"Serving at {server.server_address[0]}:{server.server_address[1]}")
 
    try:
       server.serve_forever()
    except KeyboardInterrupt:
       print('Quitting..')
+   finally:
+      if LOGFILE is not None:
+         LOGFILE.close()
