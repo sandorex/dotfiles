@@ -1,0 +1,114 @@
+#!/usr/bin/env python3
+#
+# (https://github.com/sandorex/dotfiles)
+# bill-parser - parses serbian bill data
+#
+# Copyright 2019 Aleksandar Radivojevic
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# 	 http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import argparse
+import re
+import sys
+from os.path import exists
+from os.path import isfile as file_exists
+from os.path import join as join_path
+
+import tabulate
+
+AP = argparse.ArgumentParser()
+
+AP.add_argument('data', type=str, help='Data that will be parsed')
+
+ARGS = AP.parse_intermixed_args()
+
+FORMAT_PDF417 = 'SRB2D000 (PDF417)'
+FORMAT_QR = 'QR'
+FORMAT_BARCODE = 'Barcode'
+
+FORMATS = {
+    FORMAT_PDF417:
+    r"""^
+    # this is some kind of header
+    SRB2D000\n
+    (?P<currency>.+)\n
+    (?P<amount>\d+)\n
+    (?P<name>.+)\n
+    (?P<address>.+)\n
+    (?P<postal_code>\d+)\ (?P<city>.+)\n
+    (?P<recipient>.+)\n
+    (?P<recipient_address>.+)\n
+    (?P<recipient_postal_code>\d+)\ (?P<recipient_city>.+)\n
+    (?P<account>[\d\-]+)\n
+    (?P<model>\d*)\n
+    (?P<number>\d+)\n
+    (?P<code>\d+)\n
+    (?P<note>.+)
+    $""",
+    FORMAT_QR:
+    r"""^
+    K:(?P<K>[^|]+)\|
+    V:(?P<V>[^|]+)\|
+    C:(?P<C>[^|]+)\|
+    R:(?P<account>\d+)\|
+    N:(?P<recipient_name>.+)\n
+    (?P<recipient_address>.+)\n
+    (?P<recipient_postal_code>\d+)\ (?P<recepient_city>\w+)\|
+    I:(?P<currency>[A-Za-z]+)(?P<amount>[^|]+)\|
+    P:(?P<name>.+)\n
+    (?P<address>.+)\n
+    (?P<postal_code>\d+)\ (?P<city>[^|]+)\|
+    SF:(?P<SF>[^|]+)\|
+    S:(?P<note>[^\d]+)\ (?P<date>\d+/\d+)\ (?P<user_code>[^|]+)\|
+    RO:(?P<model>\d{2})(?P<number>\d+)
+    $""",
+    FORMAT_BARCODE:
+    r"""^
+    # i do not know what this code is!
+    (?P<header>\d{10})
+    (?P<account>\d{15})
+    (?P<amount>\d+)
+    $"""
+}
+
+if __name__ == "__main__":
+   if not ARGS.data:
+      print('Data is empty')
+      sys.exit(1)
+
+   match = None
+   for k, v in FORMATS.items():
+      match = re.search(v, ARGS.data, re.VERBOSE)
+      if match is not None:
+         print(f"Matched format '{k}'")
+         break
+
+   if match is None:
+      print('No format has matched successfully')
+      print('---- start of data ----')
+      print(ARGS.data)
+      print('---- end of data ----')
+      sys.exit(1)
+
+   data = dict(match.groupdict().items())
+
+   # the amount is already in correct format so im not gonna touch it
+   if not ',' in data['amount']:
+      data['amount'] = format(float(data['amount']) / 100, '.2f')
+
+   print(
+       tabulate.tabulate(data.items(),
+                         colalign=('left', 'left'),
+                         tablefmt='orgtbl',
+                         disable_numparse=True))
+   print()
