@@ -5,3 +5,6 @@
 [alias]
    s = status
    ac = 'commit --allow-empty-message -m ""'
+
+[url "git@github.com:sandorex/"]
+	insteadOf = https://github.com/sandorex/
