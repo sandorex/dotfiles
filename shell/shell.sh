@@ -30,8 +30,14 @@ add() {
 
 # rust
 add "$HOME"/.cargo/bin
+
 # pip
 add "$HOME"/.local/bin
 
+# golang
+export GOPATH="$HOME"/.go
+add "$GOPATH"/bin
+
 # clean up
 unset add
+

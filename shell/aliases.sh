@@ -37,5 +37,8 @@ alias glances='glances -t 1'
 alias ctl='systemctl'
 alias uctl='systemctl --user'
 
-alias docker-start='systemctl start docker.service'
-alias docker-stop='systemctl stop docker.service'
+alias docker-start='sudo systemctl start docker.service'
+alias docker-stop='sudo systemctl stop docker.service'
+alias docker='sudo docker'
+
+alias docker-compose='sudo docker-compose'
