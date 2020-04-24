@@ -8,3 +8,6 @@
 
 [url "git@github.com:sandorex/"]
 	insteadOf = https://github.com/sandorex/
+
+[core]
+	pager = bat --style=\"changes\"

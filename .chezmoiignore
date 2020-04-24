@@ -1,6 +1,5 @@
-README.md
-LICENSE.txt
+**/*.md
+**/*.txt
+
 legacy
 legacy/**
-shell
-shell/**

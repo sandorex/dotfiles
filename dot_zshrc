@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 # load shell init file
-source ~/.shell
+source "$HOME"/.shell/shell.sh
 
 # the rest is only if it's an interactive shell
 [[ -o interactive ]] || return
@@ -74,13 +74,13 @@ fi
 
 ## ALIASES ##
 # load common aliases
-source "$DOTFILES"/shell/aliases.sh
+source "$HOME"/.shell/aliases.sh
 
 alias -g DATE='$(date +%d-%m-%Y)'
 
 ## FUNCTIONS ##
 # load common functions
-source "$DOTFILES"/shell/functions.sh
+source "$HOME"/.shell/functions.sh
 
 ## KEYBINDINGS ##
 # array with all the keys used

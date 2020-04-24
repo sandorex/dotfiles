@@ -7,15 +7,13 @@
 #   ~/.zlogin
 #   ~/.profile
 #
-# link this file as ~/.shell and source it from ~/.bashrc and ~/.zshrc
-
-export DOTFILES={{ .chezmoi.sourceDir }}
+# source this file from ~/.bashrc and ~/.zshrc
 
 # enable full color support if not set
 [ -z "$TERM" ] && export TERM=xterm-256color
 
 # PATH #
-add() {
+append() {
    # skip if it does not exist
    [ -d "$1" ] || return
 
@@ -25,19 +23,33 @@ add() {
    esac
 }
 
+prepend() {
+   # skip if it does not exist
+   [ -d "$1" ] || return
+
+   case ":$PATH:" in
+      *":$1:"*) :;;        # already exists, do nothing
+      *) PATH="$1:$PATH";; # prepend the path
+   esac
+}
+
 # brew
 [ -f "/home/linuxbrew/.linuxbrew/bin/brew" ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 # rust
-add "$HOME"/.cargo/bin
+append "$HOME"/.cargo/bin
 
 # pip
-add "$HOME"/.local/bin
+append "$HOME"/.local/bin
 
 # golang
 export GOPATH="$HOME"/.go
-add "$GOPATH"/bin
+append "$GOPATH"/bin
+
+# bin
+prepend "$HOME"/.bin
 
 # clean up
-unset add
+unset append
+unset prepend
 

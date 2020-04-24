@@ -14,6 +14,8 @@ else
    alias llr='tree -a'
 fi
 
+alias bat='bat --tabs=4'
+
 alias -- -='cd -'
 alias rm='rm -I'
 alias cp='cp -i'
@@ -24,7 +26,7 @@ alias greppy='grep -C 3'
 alias du='du -h'
 alias df="df -kTh"
 alias re='grep -E'
-alias less='less --quit-if-one-screen --ignore-case --status-column --LONG-PROMPT --RAW-CONTROL-CHARS --HILITE-UNREAD --tabs=4 --no-init --window=-4'
+alias less='bat'
 alias ccat='kitty +kitten icat'
 
 alias c='clear'

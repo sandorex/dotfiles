@@ -14,8 +14,8 @@ shopt -s autocd
 HISTCONTROL=ignoreboth
 
 # load additional files
-source "$DOTFILES"/shell/aliases.sh
-source "$DOTFILES"/shell/functions.sh
+source "$HOME"/.shell/aliases.sh
+source "$HOME"/.shell/functions.sh
 
 if command -v starship > /dev/null; then
    eval "$(starship init bash)"
