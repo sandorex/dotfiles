@@ -1,17 +1,6 @@
-#!/usr/bin/env zsh
+#!/bin/sh
 
-function sp() {
-	echo "-- saving path $1"
-   # shellcheck disable=SC2140
-	export "___path_save_${1}"="$(pwd)"
-}
-
-function lp() {
-	echo "-- loading path $1"
-	cd "${!$___path_save_${1}}" || return
-}
-
-function extract() {
+extract() {
     if [ -z "$1" ]; then
         echo "Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
     else

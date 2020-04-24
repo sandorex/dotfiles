@@ -1,0 +1,134 @@
+#!/usr/bin/env zsh
+
+# load shell init file
+source ~/.shell
+
+# the rest is only if it's an interactive shell
+[[ -o interactive ]] || return
+
+## zsh options ##
+HISTFILE=~/.zhistory
+HISTSIZE=SAVEHIST=10000
+setopt sharehistory extendedhistory append_history hist_ignore_dups hist_ignore_space
+
+# no beeps
+setopt no_beep
+
+# dont overwrite stuff with redirection
+setopt no_clobber
+
+# error when glob doesnt match anything
+setopt no_match
+
+# cd into a directory by typing the path
+setopt auto_cd
+
+# save comments in history
+setopt interactive_comments
+
+# report when background job finishes
+setopt notify
+
+# long format for jobs
+setopt long_list_jobs
+
+# dont match dotfiles
+setopt no_globdots
+
+# better globs
+setopt extendedglob
+setopt no_caseglob
+
+# nicer tab completion
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+
+# set window title
+case $TERM in
+    xterm*)
+        precmd () { print -Pn "\e]0;%n in %~\a" }
+        ;;
+esac
+
+autoload -Uz compinit
+
+## PLUGINS ##
+# download zgen if not already present
+[ -f "$HOME"/.zgen/zgen.zsh ] || git clone https://github.com/tarjoilija/zgen.git "$HOME"/.zgen
+
+# load zgen
+source "$HOME"/.zgen/zgen.zsh
+
+# TODO find a way to get rid of aliases from oh-my-zsh plugins and only get autocompletion
+# get plugins and stuff
+if ! zgen saved; then
+   zgen oh-my-zsh plugins/sudo
+
+   zgen load zsh-users/zsh-autosuggestions
+
+   # syntax highlighting must be loaded last!!
+   zgen load zsh-users/zsh-syntax-highlighting
+
+   zgen save
+fi
+
+## ALIASES ##
+# load common aliases
+source "$DOTFILES"/shell/aliases.sh
+
+alias -g DATE='$(date +%d-%m-%Y)'
+
+## FUNCTIONS ##
+# load common functions
+source "$DOTFILES"/shell/functions.sh
+
+## KEYBINDINGS ##
+# array with all the keys used
+# prefixes c - ctrl, s - shift
+# cbackspace (^H) is not available in terminfo
+typeset -A keys
+keys[left]=${terminfo[kLFT5]}
+keys[right]=${terminfo[kRIT5]}
+keys[del]=${terminfo[kdch1]}
+keys[cdel]=${terminfo[kDC5]}
+keys[cbackspace]="^H"
+
+bindkey "${keys[left]}" backward-word
+bindkey "${keys[right]}" forward-word
+
+bindkey "${keys[del]}" delete-char
+bindkey "${keys[cdel]}" delete-word
+
+bindkey "${keys[cbackspace]}" backward-delete-word
+
+stty -ixon # enables ^Q and ^S
+bindkey "^Q" push-input
+
+autoload -z edit-command-line
+zle -N edit-command-line
+bindkey "^X^E" edit-command-line
+
+# load starship if its installed
+if command -v starship > /dev/null; then
+   eval "$(starship init zsh)"
+else
+   echo "Starship not found, basic prompt will be used"
+   PS1="\[$(tput bold)\]\[$(tput setaf 5)\]\w\\n\[$(tput setaf 3)\]\\$ \[$(tput sgr0)\]"
+   export PS1
+fi
+
+# generate compinit only every 8 hours
+for _ in ~/.zcompdump(N.mh+8); do
+   echo "Generating compinit, this may take a while.."
+   compinit
+   clear
+done
+
+compinit -C
+
+# show dotfiles with tab completion
+_comp_options+=(globdots)
+
+# remove duplicate paths
+typeset -U PATH
+export PATH

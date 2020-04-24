@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# load shell init file (only if it exists)
-[ -f ~/.shell ] && source ~/.shell
+# load shell init file
+source ~/.shell
 
 # the rest is only if it's an interactive shell
 [[ $- != *i* ]] && return
@@ -13,14 +13,9 @@ shopt -s autocd
 # ignore duplicate commands and commands prefixed by space in history
 HISTCONTROL=ignoreboth
 
-# [ -f /etc/bashrc ] && source /etc/bashrc
-
-# load additional files (only if dotfiles exist)
-if [ -d "$DOTFILES" ]; then
-   source "$DOTFILES"/shell/aliases.sh
-else
-   echo "Dotfiles not found only basic options were set"
-fi
+# load additional files
+source "$DOTFILES"/shell/aliases.sh
+source "$DOTFILES"/shell/functions.sh
 
 if command -v starship > /dev/null; then
    eval "$(starship init bash)"
