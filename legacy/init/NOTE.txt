@@ -1,1 +1,0 @@
-run 'systemctl enable --user $PWD/user-init.service' (make sure you use $PWD)

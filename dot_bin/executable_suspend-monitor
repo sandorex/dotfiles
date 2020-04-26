@@ -1,32 +1,34 @@
 #!/bin/bash
-# requires pactl pamixer xinput xset kdialog
+#
+# (https://github.com/sandorex/dotfiles)
+# suspend-monitor - suspends the monitor and turns off the mouse
+#
+# Copyright 2019 Aleksandar Radivojevic
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# 	 http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+# requires xinput xset
 #
 # kde-connect disable 'Inhibit Screensaver' in plugins on PC
 # dpms s off -dpms
 
 # mouse to disable when suspending screen
-# use `xinput list` to get the name or id
-MOUSE="pointer:USB Laser Game Mouse"
-
-# if audio is playing through this sink screen wont be suspended
-# use `pactl list short sinks` to get the name or id
-# this is not required
-# MONITOR_SINK="alsa_output.pci-0000_01_00.1.hdmi-stereo"
+# use `xinput list` to get the name
+MOUSE="pointer:USB Optical Mouse"
 
 function error {
    echo -e "(${FUNCNAME[0]}) [error] $*"
    exit 1
-}
-
-function sink {
-   case $1 in
-      playing)
-         pactl list short sinks | grep "$MONITOR_SINK" | grep -q "RUNNING$"
-      ;;
-      muted)
-         pamixer --sink "$MONITOR_SINK" --get-mute  > /dev/null 2>&1
-      ;;
-   esac
 }
 
 function mouse {
@@ -95,15 +97,6 @@ fi
 # check if monitor is already off
 if ! monitor state; then
    echo "Monitor is already off"
-   exit 1
-fi
-
-# check if audio is playing
-if [[ -n "$MONITOR_SINK" ]] && sink playing && ! sink muted && [[ ! "$1" =~ force ]]; then
-   cat <<EOF
-Audio is playing through the monitor ($MONITOR_SINK) and it wont be suspended
-If you want to force suspend use '$0 force'
-EOF
    exit 1
 fi
 
