@@ -1,7 +1,12 @@
+~/.profile
+
+
+{{- if .options.bash }}
 ~/.bash_profile
 ~/.bash_login
+{{- end }}
 
+{{- if .options.zsh }}
 ~/.zprofile
 ~/.zlogin
-
-~/.profile
+{{- end }}

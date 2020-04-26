@@ -1,0 +1,36 @@
+{{- $bash := false -}}
+{{- $zsh := false -}}
+{{- $fish := false -}}
+
+{{- $shells := promptString "Shells to enable (defaults to all)" -}}
+{{- if eq "" $shells -}}
+   {{- $shells = "all" -}}
+{{- end -}}
+
+{{- if (eq "all" $shells) -}}
+   {{- $bash = true -}}
+   {{- $fish = true -}}
+   {{- $zsh = true -}}
+{{- else -}}
+   {{- $shells = splitList " " $shells -}}
+
+   {{- if has "bash" $shells -}}
+      {{- $bash = true -}}
+   {{- end -}}
+
+   {{- if has "zsh" $shells -}}
+      {{- $zsh = true -}}
+   {{- end -}}
+
+   {{- if has "fish" $shells -}}
+      {{- $fish = true -}}
+   {{- end -}}
+{{- end -}}
+
+
+[data]
+   [data.options]
+   bash = {{ $bash }}
+   zsh = {{ $zsh }}
+   fish = {{ $fish }}
+

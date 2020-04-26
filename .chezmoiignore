@@ -3,3 +3,12 @@
 
 legacy
 legacy/**
+
+
+{{- if not .options.bash }}
+dot_bashrc
+{{- end}}
+
+{{- if not .options.zsh }}
+dot_zshrc
+{{- end}}
