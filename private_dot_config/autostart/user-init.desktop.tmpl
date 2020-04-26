@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=User Init
+Comment=Sets up user stuff for X server (not recommended to be ran manually)
+Exec={{ .chezmoi.homedir }}/.shell/xinit.sh
+TryExec={{ .chezmoi.homedir }}/.shell/xinit.sh
+Terminal=false
+Type=Application
+NoDisplay=true

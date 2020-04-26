@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # load shell init file
-source ~/.shell
+source ~/.shell/shell.sh
 
 # the rest is only if it's an interactive shell
 [[ $- != *i* ]] && return
