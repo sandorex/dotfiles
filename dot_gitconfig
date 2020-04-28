@@ -4,10 +4,10 @@
 
 [alias]
    s = status
-   ac = 'commit --allow-empty-message -m ""'
+   ac = commit --allow-empty-message -m ""
 
 [url "git@github.com:sandorex/"]
-	insteadOf = https://github.com/sandorex/
+   insteadOf = https://github.com/sandorex/
 
 [core]
-	pager = bat --style=\"changes\"
+   pager = bat --style=\"changes\"
