@@ -28,3 +28,8 @@ extract() {
         fi
     fi
 }
+
+timer() {
+   local TIME=${1:-30m}
+   countdown "$TIME" && notify-send "Timer" "${2:-$TIME have passed}"
+}
