@@ -6,7 +6,7 @@ source "$HOME"/.shell/shell.sh
 # the rest is only if it's an interactive shell
 [[ -o interactive ]] || return
 
-## zsh options ##
+## ZSH OPTIONS ##
 HISTFILE=~/.zhistory
 HISTSIZE=SAVEHIST=10000
 setopt sharehistory extendedhistory append_history hist_ignore_dups hist_ignore_space
@@ -53,7 +53,20 @@ case $TERM in
         ;;
 esac
 
+# compinit must be loaded before zsh syntax highlighting
 autoload -Uz compinit
+
+# generate compinit only every 8 hours
+for _ in ~/.zcompdump(N.mh+8); do
+   echo "Generating compinit, this may take a while.."
+   compinit
+   clear
+done
+
+compinit -C
+
+# show dotfiles with tab completion
+_comp_options+=(globdots)
 
 ## PLUGINS ##
 # download zgen if not already present
@@ -74,6 +87,13 @@ if ! zgen saved; then
 
    zgen save
 fi
+
+## PLUGIN SETUP ##
+# modify comment highlighting so it's visible with dracula theme
+typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[comment]='fg=#6272a4'
+ZSH_HIGHLIGHT_STYLES[alias]='fg=magenta'
+ZSH_HIGHLIGHT_STYLES[builtin]='fg=magenta,underline'
 
 ## ALIASES ##
 # load common aliases
@@ -111,6 +131,7 @@ autoload -z edit-command-line
 zle -N edit-command-line
 bindkey "^X^E" edit-command-line
 
+## OTHER ##
 # load starship if its installed
 if command -v starship > /dev/null; then
    eval "$(starship init zsh)"
@@ -119,18 +140,6 @@ else
    PS1="\[$(tput bold)\]\[$(tput setaf 5)\]\w\\n\[$(tput setaf 3)\]\\$ \[$(tput sgr0)\]"
    export PS1
 fi
-
-# generate compinit only every 8 hours
-for _ in ~/.zcompdump(N.mh+8); do
-   echo "Generating compinit, this may take a while.."
-   compinit
-   clear
-done
-
-compinit -C
-
-# show dotfiles with tab completion
-_comp_options+=(globdots)
 
 # remove duplicate paths
 typeset -U PATH
