@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+pacmd unload-module module-udev-detect && pacmd load-module module-udev-detect

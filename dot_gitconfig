@@ -4,6 +4,7 @@
 
 [alias]
    s = status
+   l = log --oneline
    ac = commit --allow-empty-message -m ""
 
 [url "git@github.com:sandorex/"]
