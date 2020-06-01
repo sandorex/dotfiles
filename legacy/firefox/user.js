@@ -7,8 +7,9 @@ user_pref("extensions.activeThemeID", "firefox-compact-dark@mozilla.org");
 user_pref("devtools.theme", "dark");
 user_pref("browser.tabs.extraDragSpace", false);
 
+// NOTE that this can can make some website crash like facebook chat when pasting stuff
 // context menu is unreadable in GTK unless this is set
-user_pref("widget.content.gtk-theme-override", "Adwaita:light");
+// user_pref("widget.content.gtk-theme-override", "Adwaita:light");
 
 /* other */
 // enable use of stylesheets
@@ -19,6 +20,9 @@ user_pref("general.autoScroll", false);
 
 // execute after mouse button is released (otherwise its possible to press something by quickly tapping the right click)
 user_pref("ui.context_menus.after_mouseup", true);
+
+// disable cut / copy events
+user_pref("dom.event.clipboardevents.enabled", false)
 
 /* scrolling */
 // enable physics

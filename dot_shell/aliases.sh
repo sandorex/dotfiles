@@ -28,10 +28,13 @@ alias df="df -kTh"
 alias re='grep -E'
 alias less='bat'
 alias ccat='kitty +kitten icat'
+alias scb="xclip -selection c"
+alias gcb="xclip -selection c -o"
 
 alias c='clear'
 alias b='bat'
 alias e='edit'
+alias v='nvim'
 
 alias iotop='sudo iotop'
 alias glances='glances -t 1'

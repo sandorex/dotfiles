@@ -1,0 +1,11 @@
+prompt_order = [
+    'jobs',
+    'git_branch',
+    'cmd_duration',
+    'character',
+]
+
+jobs.symbol = ' '
+cmd_duration.prefix = ''
+git_branch.symbol = '  '
+

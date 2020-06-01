@@ -99,6 +99,7 @@ ZSH_HIGHLIGHT_STYLES[builtin]='fg=magenta,underline'
 # load common aliases
 source "$HOME"/.shell/aliases.sh
 
+alias shell-reload='source ~/.zshrc'
 alias -g DATE='$(date +%d-%m-%Y)'
 
 ## FUNCTIONS ##
