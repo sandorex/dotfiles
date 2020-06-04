@@ -3,7 +3,8 @@
 
 legacy
 legacy/**
-
+fixes
+fixes/**
 
 {{- if not .options.bash }}
 dot_bashrc

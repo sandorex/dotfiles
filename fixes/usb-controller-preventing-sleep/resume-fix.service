@@ -1,0 +1,10 @@
+[Unit]
+Description=Enables the usb controller after waking up
+After=suspend.target
+
+[Service]
+Type=simple
+ExecStart=/bin/sh -c '/bin/echo -n "0000:00:12.0" > /sys/bus/pci/drivers/ohci-pci/bind'
+
+[Install]
+WantedBy=suspend.target
