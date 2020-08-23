@@ -1,11 +1,36 @@
 prompt_order = [
+    'custom.toolbox',
     'jobs',
     'git_branch',
     'cmd_duration',
+    'directory',
     'character',
 ]
 
-jobs.symbol = ' '
-cmd_duration.prefix = ''
-git_branch.symbol = '  '
+[custom.toolbox]
+when = """ test -e /run/.toolboxenv """
+command = 'echo ⬢ '
+style = 'purple'
+prefix = ''
+suffix = ' '
+
+[jobs]
+prefix = ''
+suffix = ''
+symbol = ' '
+
+[git_branch]
+prefix = ''
+suffix = ''
+symbol = '  '
+
+[cmd_duration]
+prefix = ''
+suffix = ''
+
+[directory]
+truncation_length = 2
+truncate_to_repo = true
+prefix = ''
+suffix = ''
 

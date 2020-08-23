@@ -9,7 +9,8 @@ source "$HOME"/.shell/shell.sh
 ## ZSH OPTIONS ##
 HISTFILE=~/.zhistory
 HISTSIZE=SAVEHIST=10000
-setopt sharehistory extendedhistory append_history hist_ignore_dups hist_ignore_space
+#setopt share_history extended_history append_history hist_ignore_dups hist_ignore_space
+setopt extended_history append_history hist_ignore_dups hist_ignore_space
 
 # no beeps
 setopt no_beep
@@ -58,9 +59,7 @@ autoload -Uz compinit
 
 # generate compinit only every 8 hours
 for _ in ~/.zcompdump(N.mh+8); do
-   echo "Generating compinit, this may take a while.."
    compinit
-   clear
 done
 
 compinit -C

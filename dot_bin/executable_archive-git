@@ -17,8 +17,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import os, sys, subprocess, zipfile, shutil
-
+import os
+import shutil
+import subprocess
+import sys
+import zipfile
 from datetime import datetime
 
 ## CONFIGURATION ##
@@ -36,6 +39,7 @@ def filter_shell(cmd):
 def gather_files():
    files = []
 
+    # TODO rework it so it gets all files but the deleted and ignored
    files.extend(filter_shell([
       'git', 'ls-files', '--others',            # only print non-tracked files
                          '--exclude-standard'   # exclude files ignored by git
@@ -71,11 +75,19 @@ def main(args = sys.argv):
       os.chdir(git_root)
       root = False
 
+   # TODO add repo name in the archive name
    # format argument if passed
    if len(args) > 1 and args[1]:
       filename = datetime.now().strftime(args[1])
    else:
       filename = datetime.now().strftime(ARCHIVE_NAME)
+
+   from pprint import PrettyPrinter
+   pp = PrettyPrinter(4)
+   pp.pprint(gather_files())
+   print(f"Would write an archive: {filename}")
+   print("quitting..")
+   sys.exit(0)
 
    # make the archive
    with zipfile.ZipFile(filename, 'w', compression = zipfile.ZIP_LZMA) as archive:

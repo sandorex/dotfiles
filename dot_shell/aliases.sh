@@ -31,13 +31,14 @@ alias ccat='kitty +kitten icat'
 alias scb="xclip -selection c"
 alias gcb="xclip -selection c -o"
 
+alias edit='micro'
 alias c='clear'
 alias b='bat'
 alias e='edit'
 alias v='nvim'
 
-alias iotop='sudo iotop'
-alias glances='glances -t 1'
+alias iomon='sudo iotop'
+alias sysm='bpytop'
 
 alias ctl='systemctl'
 alias uctl='systemctl --user'

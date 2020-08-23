@@ -5,6 +5,8 @@ legacy
 legacy/**
 fixes
 fixes/**
+util
+util/**
 
 {{- if not .options.bash }}
 dot_bashrc

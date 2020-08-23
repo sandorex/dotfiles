@@ -1,10 +1,11 @@
 #!/bin/sh
 # TODO run irexec-user if not running
 
-# map caps to new modifier hyper
+# set caps to hyper key
 setxkbmap -option caps:hyper
-xmodmap -e "remove mod4 = Hyper_L"
-xmodmap -e "add mod3 = Hyper_L"
+
+# run xmodmap if accessible
+[ -f ~/.Xmodmap ] && xmodmap ~/.Xmodmap
 
 # disable bell
 xset b off

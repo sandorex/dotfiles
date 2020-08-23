@@ -1,16 +1,13 @@
 #!/bin/sh
 #
-# remove all of the following files:
-#   ~/.bash_profile
-#   ~/.bash_login
-#   ~/.zprofile
-#   ~/.zlogin
-#   ~/.profile
-#
 # source this file from ~/.bashrc and ~/.zshrc
 
+# ENV VARS #
 # enable full color support if not set
 [ -z "$TERM" ] && export TERM=xterm-256color
+
+# disable vcpkg telemetry
+export VCPKG_DISABLE_METRICS=yes
 
 # PATH #
 append() {
@@ -45,6 +42,9 @@ append "$HOME"/.local/bin
 # golang
 export GOPATH="$HOME"/.go
 append "$GOPATH"/bin
+
+# doom emacs
+append "$HOME"/.emacs.d/bin
 
 # bin
 prepend "$HOME"/.bin
