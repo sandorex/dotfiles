@@ -34,5 +34,6 @@ format = '[ $symbol$branch ]($style)'
 format = '[$path]($style)( $read_only) '
 truncation_length = 2
 truncate_to_repo = true
-read_only = '' # does not work for some reason
+read_only = '' # will replace read_only_symbol in next release
+read_only_symbol = ''
 
