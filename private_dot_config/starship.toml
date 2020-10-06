@@ -1,36 +1,38 @@
-prompt_order = [
-    'custom.toolbox',
-    'jobs',
-    'git_branch',
-    'cmd_duration',
-    'directory',
-    'character',
-]
+format = """
+${custom.toolbox}\
+$jobs\
+$cmake\
+$cmd_duration\
+$git_branch\
+$directory\
+$character"""
+
+
+
+# enable when its possible to optionally put in between git_branch and the rest
+#
+# [git_status]
+# format = '''([\($all_status$ahead_behind\)]($style)
+# )'''
 
 [custom.toolbox]
-when = """ test -e /run/.toolboxenv """
-command = 'echo ⬢ '
+format = '[⬢ ]($style)'
+command = 'echo YES'
+when = 'test -e /run/.toolboxenv'
+# when = ':'
 style = 'purple'
-prefix = ''
-suffix = ' '
 
 [jobs]
-prefix = ''
-suffix = ''
 symbol = ' '
 
-[git_branch]
-prefix = ''
-suffix = ''
-symbol = '  '
-
 [cmd_duration]
-prefix = ''
-suffix = ''
+format = '[$duration ]($style)'
 
+[git_branch]
+format = '[ $symbol$branch ]($style)'
 [directory]
+format = '[$path]($style)( $read_only) '
 truncation_length = 2
 truncate_to_repo = true
-prefix = ''
-suffix = ''
+read_only = '' # does not work for some reason
 
