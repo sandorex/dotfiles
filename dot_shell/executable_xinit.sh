@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # TODO run irexec-user if not running
 
 # set caps to hyper key
@@ -16,3 +16,6 @@ xset r rate 350 30
 
 # disable mouse acceleration
 xset m 1
+
+# disable wakeup by the mouse/keyboard
+#~/.bin/other/disable-usb-device-wakeup.sh 046d:c534

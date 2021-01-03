@@ -137,7 +137,7 @@ if command -v starship > /dev/null; then
    eval "$(starship init zsh)"
 else
    echo "Starship not found, basic prompt will be used"
-   PS1="\[$(tput bold)\]\[$(tput setaf 5)\]\w\\n\[$(tput setaf 3)\]\\$ \[$(tput sgr0)\]"
+   PS1="$ "
    export PS1
 fi
 
